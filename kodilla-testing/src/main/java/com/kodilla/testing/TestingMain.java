@@ -21,8 +21,14 @@ public class TestingMain {
 
         Calculator calculator = new Calculator();
 
-        System.out.println(calculator.add(3, 5));
-        System.out.println(calculator.subtract(18, 6));
+        int addTest = calculator.add(3, 5);
+        int subtractTest = calculator.subtract(18, 6);
+
+        if (addTest == 8 && subtractTest == 12) {
+            System.out.println("Calculator's test was positive!");
+        } else {
+            System.out.println("Error!");
+        }
     }
 }
 
