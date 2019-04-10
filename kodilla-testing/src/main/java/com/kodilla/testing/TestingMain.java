@@ -24,10 +24,16 @@ public class TestingMain {
         int addTest = calculator.add(3, 5);
         int subtractTest = calculator.subtract(18, 6);
 
-        if (addTest == 8 && subtractTest == 12) {
-            System.out.println("Calculator's test was positive!");
+        if (addTest == 8) {
+            System.out.println("Success! Calculator's method add() test was positive!");
         } else {
-            System.out.println("Error!");
+            System.out.println("Error! Calculator's method add() is not working properly.");
+        }
+
+        if (subtractTest == 12) {
+            System.out.println("Success! Calculator's method subtract test was positive!");
+        } else {
+            System.out.println("Error! Calculator's method subtract() is not working properly.");
         }
     }
 }
