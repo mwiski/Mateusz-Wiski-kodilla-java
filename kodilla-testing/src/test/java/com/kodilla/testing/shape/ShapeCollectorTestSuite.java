@@ -29,12 +29,13 @@ public class ShapeCollectorTestSuite {
     public void testAddFigure() {
         //Given
         ShapeCollector collector = new ShapeCollector();
+        Square square = new Square(10);
 
         //When
-        collector.addFigure(new Square(10));
+        collector.addFigure(square);
 
         //Then
-        Assert.assertEquals(1, collector.getFiguresQuantity());
+        Assert.assertEquals(square, collector.getFigure(0));
     }
 
     @Test
@@ -62,21 +63,21 @@ public class ShapeCollectorTestSuite {
 
         //Then
         Assert.assertTrue(result);
-        Assert.assertEquals(0, collector.getFiguresQuantity());
+        Assert.assertEquals(null, collector.getFigure(0));
     }
 
     @Test
     public void testGetFigure() {
         //Given
         ShapeCollector collector = new ShapeCollector();
-        Square square = new Square(10);
+        Square expected = new Square(10);
 
         //When
-        collector.addFigure(square);
-        Square retrievedSquare = (Square) collector.getFigure(0);
+        collector.addFigure(expected);
+        Square result = (Square) collector.getFigure(0);
 
         //Then
-        Assert.assertEquals(square, retrievedSquare);
+        Assert.assertEquals(expected, result);
     }
 
     @Test
@@ -88,10 +89,11 @@ public class ShapeCollectorTestSuite {
         Triangle triangle = new Triangle(10, 5);
 
         //When
-        collector.showFigures();
+        String result = collector.showFigures();
+        String expectedOutput = "";
 
-        //Then
-        Assert.assertEquals(0, collector.getFiguresQuantity());
+                //Then
+        Assert.assertEquals(expectedOutput, result);
     }
 
     @Test
@@ -107,7 +109,7 @@ public class ShapeCollectorTestSuite {
         collector.addFigure(circle);
         collector.addFigure(triangle);
         String result = collector.showFigures();
-        String expectedOutput = square.getShapeName() + "\n" + circle.getShapeName() + "\n" + triangle.getShapeName() + "\n";
+        String expectedOutput = square.getName() + "\n" + circle.getName() + "\n" + triangle.getName() + "\n";
 
         //Then
         Assert.assertEquals(expectedOutput, result);

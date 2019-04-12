@@ -1,26 +1,32 @@
 package com.kodilla.testing.forum.shape;
 
+import java.util.Objects;
+
 public class Square implements Shape {
-    private double sideLength;
+    private double length;
 
-    public Square(double sideLength) {
-        this.sideLength = sideLength;
+    public Square(double length) {
+        this.length = length;
     }
 
-    public double getSideLength() {
-        return sideLength;
-    }
-
-    public String getShapeName() {
+    public String getName() {
         return "square";
     }
 
     public double getField() {
-        return sideLength * sideLength;
+        return length * length;
     }
 
     @Override
-    public String toString() {
-        return "Square{sideLength=" + sideLength + "}";
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Square square = (Square) o;
+        return Double.compare(square.length, length) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(length);
     }
 }
