@@ -43,27 +43,18 @@ public class StatisticsCollector {
         postsQuantity = statistics.postsCount();
         commentsQuantity = statistics.commentsCount();
 
-        if (usersQuantity > 0) {
+        if (usersQuantity == 0) {
+            avgQuantityPostsOnUser = Double.NaN;
+            avgQuantityCommentsOnUser = Double.NaN;
+        } else {
             avgQuantityPostsOnUser = (double) postsQuantity / usersQuantity;
             avgQuantityCommentsOnUser = (double) commentsQuantity / usersQuantity;
         }
 
-        if (postsQuantity > 0)
+        if (postsQuantity == 0) {
+            avgQuantityCommentsOnPosts = Double.NaN;
+        } else {
             avgQuantityCommentsOnPosts = (double) commentsQuantity / postsQuantity;
-    }
-
-    public double roundTo2(double value) {
-
-        value = ((double)((int)(value *100.0)))/100.0;
-        return value;
-    }
-
-    public String showStatistics() {
-
-        return "There is " + usersQuantity + " users in our forum.\n"
-                + "They have posted " + postsQuantity + " posts and " + commentsQuantity + " comments.\n"
-                + "Average quantity of posts on users is: " + roundTo2(avgQuantityPostsOnUser) + "\n"
-                + "Average quantity of comments on users is: " + roundTo2(avgQuantityCommentsOnUser) + "\n"
-                + "Average quantity of comments on posts is: " + roundTo2(avgQuantityCommentsOnPosts) + "\n";
+        }
     }
 }
