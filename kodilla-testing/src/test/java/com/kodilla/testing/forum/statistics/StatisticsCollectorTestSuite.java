@@ -45,18 +45,18 @@ public class StatisticsCollectorTestSuite {
         when(statisticsMock.postsCount()).thenReturn(posts);
         when(statisticsMock.commentsCount()).thenReturn(comments);
 
-        StatisticsCollector collector = new StatisticsCollector();
+        StatisticsProcessor processor = new StatisticsProcessor();
 
         //When
-        collector.calculateAdvStatistics(statisticsMock);
+        StatisticsCollector collector = processor.calculateAdvStatistics(statisticsMock);
 
         //Then
         Assert.assertEquals(0, collector.getUsersQuantity());
         Assert.assertEquals(0, collector.getPostsQuantity());
         Assert.assertEquals(0, collector.getCommentsQuantity());
-        Assert.assertEquals(Double.NaN, collector.getAvgQuantityPostsOnUser(), 0);
-        Assert.assertEquals(Double.NaN, collector.getAvgQuantityCommentsOnUser(), 0);
-        Assert.assertEquals(Double.NaN, collector.getAvgQuantityCommentsOnPosts(), 0);
+        Assert.assertEquals(0, collector.getAvgQuantityPostsOnUser(), 0);
+        Assert.assertEquals(0, collector.getAvgQuantityCommentsOnUser(), 0);
+        Assert.assertEquals(0, collector.getAvgQuantityCommentsOnPosts(), 0);
     }
 
     @Test
@@ -71,18 +71,18 @@ public class StatisticsCollectorTestSuite {
         when(statisticsMock.postsCount()).thenReturn(posts);
         when(statisticsMock.commentsCount()).thenReturn(comments);
 
-        StatisticsCollector collector = new StatisticsCollector();
+        StatisticsProcessor processor = new StatisticsProcessor();
 
         //When
-        collector.calculateAdvStatistics(statisticsMock);
+        StatisticsCollector collector = processor.calculateAdvStatistics(statisticsMock);
 
         //Then
         Assert.assertEquals(100, collector.getUsersQuantity());
         Assert.assertEquals(0, collector.getPostsQuantity());
         Assert.assertEquals(0, collector.getCommentsQuantity());
-        Assert.assertEquals(0.0, collector.getAvgQuantityPostsOnUser(), 0);
-        Assert.assertEquals(0.0, collector.getAvgQuantityCommentsOnUser(), 0);
-        Assert.assertEquals(Double.NaN, collector.getAvgQuantityCommentsOnPosts(), 0);
+        Assert.assertEquals(0, collector.getAvgQuantityPostsOnUser(), 0);
+        Assert.assertEquals(0, collector.getAvgQuantityCommentsOnUser(), 0);
+        Assert.assertEquals(0, collector.getAvgQuantityCommentsOnPosts(), 0);
     }
 
     @Test
@@ -96,17 +96,17 @@ public class StatisticsCollectorTestSuite {
         when(statisticsMock.postsCount()).thenReturn(posts);
         when(statisticsMock.commentsCount()).thenReturn(comments);
 
-        StatisticsCollector collector = new StatisticsCollector();
+        StatisticsProcessor processor = new StatisticsProcessor();
 
         //When
-        collector.calculateAdvStatistics(statisticsMock);
+        StatisticsCollector collector = processor.calculateAdvStatistics(statisticsMock);
 
         //Then
         Assert.assertEquals(0, collector.getUsersQuantity());
         Assert.assertEquals(50, collector.getPostsQuantity());
         Assert.assertEquals(50, collector.getCommentsQuantity());
-        Assert.assertEquals(Double.NaN, collector.getAvgQuantityPostsOnUser(), 0);
-        Assert.assertEquals(Double.NaN, collector.getAvgQuantityCommentsOnUser(), 0);
+        Assert.assertEquals(0, collector.getAvgQuantityPostsOnUser(), 0);
+        Assert.assertEquals(0, collector.getAvgQuantityCommentsOnUser(), 0);
         Assert.assertEquals(1.0, collector.getAvgQuantityCommentsOnPosts(), 0);
     }
 
@@ -122,18 +122,18 @@ public class StatisticsCollectorTestSuite {
         when(statisticsMock.postsCount()).thenReturn(posts);
         when(statisticsMock.commentsCount()).thenReturn(comments);
 
-        StatisticsCollector collector = new StatisticsCollector();
+        StatisticsProcessor processor = new StatisticsProcessor();
 
         //When
-        collector.calculateAdvStatistics(statisticsMock);
+        StatisticsCollector collector = processor.calculateAdvStatistics(statisticsMock);
 
         //Then
         Assert.assertEquals(100, collector.getUsersQuantity());
         Assert.assertEquals(1000, collector.getPostsQuantity());
         Assert.assertEquals(0, collector.getCommentsQuantity());
         Assert.assertEquals(10.0, collector.getAvgQuantityPostsOnUser(), 0.001);
-        Assert.assertEquals(0.0, collector.getAvgQuantityCommentsOnUser(), 0);
-        Assert.assertEquals(0.0, collector.getAvgQuantityCommentsOnPosts(), 0);
+        Assert.assertEquals(0, collector.getAvgQuantityCommentsOnUser(), 0);
+        Assert.assertEquals(0, collector.getAvgQuantityCommentsOnPosts(), 0);
     }
 
     @Test
@@ -148,10 +148,10 @@ public class StatisticsCollectorTestSuite {
         when(statisticsMock.postsCount()).thenReturn(posts);
         when(statisticsMock.commentsCount()).thenReturn(comments);
 
-        StatisticsCollector collector = new StatisticsCollector();
+        StatisticsProcessor processor = new StatisticsProcessor();
 
         //When
-        collector.calculateAdvStatistics(statisticsMock);
+        StatisticsCollector collector = processor.calculateAdvStatistics(statisticsMock);
 
         //Then
         Assert.assertEquals(100, collector.getUsersQuantity());
@@ -174,17 +174,17 @@ public class StatisticsCollectorTestSuite {
         when(statisticsMock.postsCount()).thenReturn(posts);
         when(statisticsMock.commentsCount()).thenReturn(comments);
 
-        StatisticsCollector collector = new StatisticsCollector();
+        StatisticsProcessor processor = new StatisticsProcessor();
 
         //When
-        collector.calculateAdvStatistics(statisticsMock);
+        StatisticsCollector collector = processor.calculateAdvStatistics(statisticsMock);
 
         //Then
         Assert.assertEquals(100, collector.getUsersQuantity());
         Assert.assertEquals(0, collector.getPostsQuantity());
         Assert.assertEquals(3, collector.getCommentsQuantity());
-        Assert.assertEquals(0.0, collector.getAvgQuantityPostsOnUser(), 0);
+        Assert.assertEquals(0, collector.getAvgQuantityPostsOnUser(), 0);
         Assert.assertEquals(0.03, collector.getAvgQuantityCommentsOnUser(), 0.01);
-        Assert.assertEquals(Double.NaN, collector.getAvgQuantityCommentsOnPosts(), 0);
+        Assert.assertEquals(0, collector.getAvgQuantityCommentsOnPosts(), 0);
     }
 }

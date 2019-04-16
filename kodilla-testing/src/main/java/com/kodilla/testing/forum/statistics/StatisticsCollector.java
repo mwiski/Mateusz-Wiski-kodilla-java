@@ -1,16 +1,22 @@
 package com.kodilla.testing.forum.statistics;
 
-import java.util.List;
-
 public class StatisticsCollector {
 
-    private List<String> usersNames;
     private int usersQuantity;
     private int postsQuantity;
     private int commentsQuantity;
     private double avgQuantityPostsOnUser;
     private double avgQuantityCommentsOnUser;
     private double avgQuantityCommentsOnPosts;
+
+    public StatisticsCollector(int usersQuantity, int postsQuantity, int commentsQuantity, double avgQuantityPostsOnUser, double avgQuantityCommentsOnUser, double avgQuantityCommentsOnPosts) {
+        this.usersQuantity = usersQuantity;
+        this.postsQuantity = postsQuantity;
+        this.commentsQuantity = commentsQuantity;
+        this.avgQuantityPostsOnUser = avgQuantityPostsOnUser;
+        this.avgQuantityCommentsOnUser = avgQuantityCommentsOnUser;
+        this.avgQuantityCommentsOnPosts = avgQuantityCommentsOnPosts;
+    }
 
     public int getUsersQuantity() {
         return usersQuantity;
@@ -36,25 +42,27 @@ public class StatisticsCollector {
         return avgQuantityCommentsOnPosts;
     }
 
-    public void calculateAdvStatistics(Statistics statistics) {
+    public void setUsersQuantity(int usersQuantity) {
+        this.usersQuantity = usersQuantity;
+    }
 
-        usersNames = statistics.usersNames();
-        usersQuantity = usersNames.size();
-        postsQuantity = statistics.postsCount();
-        commentsQuantity = statistics.commentsCount();
+    public void setPostsQuantity(int postsQuantity) {
+        this.postsQuantity = postsQuantity;
+    }
 
-        if (usersQuantity == 0) {
-            avgQuantityPostsOnUser = Double.NaN;
-            avgQuantityCommentsOnUser = Double.NaN;
-        } else {
-            avgQuantityPostsOnUser = (double) postsQuantity / usersQuantity;
-            avgQuantityCommentsOnUser = (double) commentsQuantity / usersQuantity;
-        }
+    public void setCommentsQuantity(int commentsQuantity) {
+        this.commentsQuantity = commentsQuantity;
+    }
 
-        if (postsQuantity == 0) {
-            avgQuantityCommentsOnPosts = Double.NaN;
-        } else {
-            avgQuantityCommentsOnPosts = (double) commentsQuantity / postsQuantity;
-        }
+    public void setAvgQuantityPostsOnUser(double avgQuantityPostsOnUser) {
+        this.avgQuantityPostsOnUser = avgQuantityPostsOnUser;
+    }
+
+    public void setAvgQuantityCommentsOnUser(double avgQuantityCommentsOnUser) {
+        this.avgQuantityCommentsOnUser = avgQuantityCommentsOnUser;
+    }
+
+    public void setAvgQuantityCommentsOnPosts(double avgQuantityCommentsOnPosts) {
+        this.avgQuantityCommentsOnPosts = avgQuantityCommentsOnPosts;
     }
 }
