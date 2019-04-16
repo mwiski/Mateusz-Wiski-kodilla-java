@@ -9,15 +9,6 @@ public class StatisticsCollector {
     private double avgQuantityCommentsOnUser;
     private double avgQuantityCommentsOnPosts;
 
-    public StatisticsCollector(int usersQuantity, int postsQuantity, int commentsQuantity, double avgQuantityPostsOnUser, double avgQuantityCommentsOnUser, double avgQuantityCommentsOnPosts) {
-        this.usersQuantity = usersQuantity;
-        this.postsQuantity = postsQuantity;
-        this.commentsQuantity = commentsQuantity;
-        this.avgQuantityPostsOnUser = avgQuantityPostsOnUser;
-        this.avgQuantityCommentsOnUser = avgQuantityCommentsOnUser;
-        this.avgQuantityCommentsOnPosts = avgQuantityCommentsOnPosts;
-    }
-
     public int getUsersQuantity() {
         return usersQuantity;
     }

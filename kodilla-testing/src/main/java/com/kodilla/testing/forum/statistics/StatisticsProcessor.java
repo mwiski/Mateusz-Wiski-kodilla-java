@@ -4,7 +4,7 @@ public class StatisticsProcessor {
 
     public StatisticsCollector calculateAdvStatistics(Statistics statistics) {
 
-        StatisticsCollector collector = new StatisticsCollector(0, 0, 0, 0, 0, 0);
+        StatisticsCollector collector = new StatisticsCollector();
 
         collector.setUsersQuantity(statistics.usersNames().size());
         collector.setPostsQuantity(statistics.postsCount());
