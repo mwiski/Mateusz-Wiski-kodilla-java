@@ -83,7 +83,7 @@ public class BookDirectoryTestSuite {
     }
 
     @Test
-    public void testListBooksInHandsOfNoneBooks(){
+    public void testListBooksInHandsOfWhenUserHasNoBooks() {
         //Given
         LibraryDatabase libraryDatabaseMock = mock(LibraryDatabase.class);
         BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
@@ -100,13 +100,12 @@ public class BookDirectoryTestSuite {
     }
 
     @Test
-    public void testListBooksInHandsOfOneBook(){
+    public void testListBooksInHandsOfWhenUserHasOneBook() {
         //Given
         LibraryDatabase libraryDatabaseMock = mock(LibraryDatabase.class);
         BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
         LibraryUser libraryUser = new LibraryUser("Jan", "Kowalski", "90051773287");
-        List<Book> expectedBooks = new ArrayList<>();
-        expectedBooks.add(new Book("Title", "Author", 1999));
+        List<Book> expectedBooks = generateListOfNBooks(1);
 
         when(libraryDatabaseMock.listBooksInHandsOf(libraryUser)).thenReturn(expectedBooks);
 
@@ -114,12 +113,12 @@ public class BookDirectoryTestSuite {
         List<Book> result = bookLibrary.listBooksInHandsOf(libraryUser);
 
         //Then
-        Assert.assertEquals(expectedBooks, result);
         Assert.assertEquals(1, result.size());
+        Assert.assertEquals(expectedBooks, result);
     }
 
     @Test
-    public void testListBooksInHandsOfFiveBooks(){
+    public void testListBooksInHandsOfWhenUserHasFiveBooks() {
         //Given
         LibraryDatabase libraryDatabaseMock = mock(LibraryDatabase.class);
         BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
@@ -132,7 +131,7 @@ public class BookDirectoryTestSuite {
         List<Book> result = bookLibrary.listBooksInHandsOf(libraryUser);
 
         //Then
-        Assert.assertEquals(expectedBooks, result);
         Assert.assertEquals(5, result.size());
+        Assert.assertEquals(expectedBooks, result);
     }
 }
