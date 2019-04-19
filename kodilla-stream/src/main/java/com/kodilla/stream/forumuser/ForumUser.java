@@ -1,6 +1,8 @@
 package com.kodilla.stream.forumuser;
 
+import com.google.gson.GsonBuilder;
 import java.time.LocalDate;
+import java.util.Objects;
 
 public final class ForumUser {
 
@@ -10,8 +12,14 @@ public final class ForumUser {
     private final LocalDate birthDate;
     private final int postsNumber;
 
-    public ForumUser(final int userId, final String userName, final char sex, final int yearOfBirth,
-                     final int monthOfBirth, final int dayOfBirth, final int postsNumber) {
+    public ForumUser(final int userId,
+                     final String userName,
+                     final char sex,
+                     final int yearOfBirth,
+                     final int monthOfBirth,
+                     final int dayOfBirth,
+                     final int postsNumber)
+    {
         this.userId = userId;
         this.userName = userName;
         this.sex = sex;
@@ -37,12 +45,22 @@ public final class ForumUser {
 
     @Override
     public String toString() {
-        return "ForumUser{" +
-                "userId=" + userId +
-                ", userName='" + userName + '\'' +
-                ", sex=" + sex +
-                ", birthDate=" + birthDate +
-                ", postsNumber=" + postsNumber +
-                '}';
+        return new GsonBuilder().setPrettyPrinting().create().toJson(this);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ForumUser)) return false;
+        ForumUser forumUser = (ForumUser) o;
+        return userId == forumUser.userId &&
+                sex == forumUser.sex &&
+                userName.equals(forumUser.userName) &&
+                birthDate.equals(forumUser.birthDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId, userName, sex, birthDate);
     }
 }
