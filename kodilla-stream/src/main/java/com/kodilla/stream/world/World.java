@@ -15,11 +15,10 @@ public final class World {
         return continents.stream()
                 .flatMap(continent -> continent.getCountries().stream())
                 .map(country -> country.getPeopleQuantity())
-                .reduce(BigDecimal.ZERO, (sum, current) -> sum = sum.add(current));
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
-    public Set<Continent> addContinent(Continent continent) {
+    public void addContinent(Continent continent) {
         continents.add(continent);
-        return continents;
     }
 }

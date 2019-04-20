@@ -1,5 +1,6 @@
 package com.kodilla.stream.world;
 
+import java.util.Objects;
 import java.util.Set;
 
 public final class Continent {
@@ -10,14 +11,24 @@ public final class Continent {
         this.countries = countries;
     }
 
-    public Set<Country> addCountry(Country country) {
+    public void addCountry(Country country) {
         countries.add(country);
-        return countries;
     }
 
     public Set<Country> getCountries() {
         return countries;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Continent)) return false;
+        Continent continent = (Continent) o;
+        return countries.equals(continent.countries);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(countries);
+    }
 }
