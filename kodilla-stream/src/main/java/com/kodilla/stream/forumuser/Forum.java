@@ -15,7 +15,7 @@ public final class Forum {
     }
 
     public List<ForumUser> getUsers() {
-        return new ArrayList<>(users);
+        return users;
     }
 
     public Map<Integer, ForumUser> filterAndCollect() {
