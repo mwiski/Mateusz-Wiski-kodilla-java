@@ -6,11 +6,38 @@ import static com.kodilla.stream.array.ArrayOperations.getAverage;
 
 public class ArrayOperationsTestSuite {
     @Test
-    public void testGetAverage() {
+    public void testGetAverageWhenNull() {
         //Given When
-        int[] numbers = {125, 434, 9856, 757, 7823, 888};
+        int[] numbers = null;
 
         //Then
-        Assert.assertEquals(3313.8333, getAverage(numbers), 0.0001);
+        Assert.assertEquals(0, getAverage(numbers), 0);
+    }
+
+    @Test
+    public void testGetAverageWhenArrayIsEmpty() {
+        //Given When
+        int[] numbers = {};
+
+        //Then
+        Assert.assertEquals(0, getAverage(numbers), 0);
+    }
+
+    @Test
+    public void testGetAverageWhenArrayHasOneNumber() {
+        //Given When
+        int[] numbers = {1};
+
+        //Then
+        Assert.assertEquals(1, getAverage(numbers), 0);
+    }
+
+    @Test
+    public void testGetAverageWhenArrayHasMultipleNumbers() {
+        //Given When
+        int[] numbers = {1, 2, 3};
+
+        //Then
+        Assert.assertEquals(2, getAverage(numbers), 0);
     }
 }

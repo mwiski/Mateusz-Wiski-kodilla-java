@@ -5,15 +5,19 @@ import java.util.stream.IntStream;
 public interface ArrayOperations {
 
     public static double getAverage(int[] numbers) {
-        IntStream.range(0, numbers.length)
-                .map(n -> numbers[n])
-                .forEach(System.out::println);
+        if (numbers == null) {
+            return 0;
+        } else if (numbers.length > 0) {
+            IntStream.range(0, numbers.length)
+                    .map(n -> numbers[n])
+                    .forEach(System.out::println);
 
-        double avg = IntStream.range(0, numbers.length)
-                .map(n -> numbers[n])
-                .average()
-                .getAsDouble();
-
-        return avg;
+            return IntStream.range(0, numbers.length)
+                    .map(n -> numbers[n])
+                    .average()
+                    .getAsDouble();
+        } else {
+            return 0;
+        }
     }
 }
