@@ -3,9 +3,9 @@ package com.kodilla.exception.test;
 import java.util.Map;
 
 public final class FlightsProcessor {
-    private final Map<String, Boolean> airports;
+    private Map<String, Boolean> airports;
 
-    public FlightsProcessor(final Map<String, Boolean> airports) {
+    public FlightsProcessor(Map<String, Boolean> airports) {
         this.airports = airports;
     }
 
