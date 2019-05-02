@@ -2,7 +2,7 @@ package com.kodilla.exception.test;
 
 import java.util.Map;
 
-public final class FlightsProcessor {
+public class FlightsProcessor {
     private Map<String, Boolean> airports;
 
     public FlightsProcessor(Map<String, Boolean> airports) {
