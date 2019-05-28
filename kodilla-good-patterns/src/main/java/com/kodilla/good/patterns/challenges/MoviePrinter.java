@@ -16,10 +16,4 @@ public class MoviePrinter {
                 .flatMap(Collection::stream)
                 .collect(Collectors.joining(" ! "));
     }
-
-    public static void main(String[] args) {
-        MoviePrinter moviePrinter = new MoviePrinter(new MovieStore());
-
-        System.out.println(moviePrinter.print());
-    }
 }
