@@ -6,14 +6,12 @@ import com.kodilla.good.patterns.challenges.orderservice.processor.OrderProcesso
 import com.kodilla.good.patterns.challenges.orderservice.productorder.ProductOrderRetriever;
 import com.kodilla.good.patterns.challenges.orderservice.orderservice.ProductOrderService;
 
-import java.util.ArrayList;
-
 public class Application {
 
     public static void main(String[] args) {
 
         ProductOrderRetriever retriever = new ProductOrderRetriever();
-        OrderProcessor orderProcessor = new OrderProcessor(new MailService(), new ProductOrderService(), new ProductOrderRepository(new ArrayList<>()));
+        OrderProcessor orderProcessor = new OrderProcessor(new MailService(), new ProductOrderService(), new ProductOrderRepository());
 
         orderProcessor.process(retriever.retrieve());
         System.out.println(retriever.getProductOrder().getProduct().getAvailableQuantity());
