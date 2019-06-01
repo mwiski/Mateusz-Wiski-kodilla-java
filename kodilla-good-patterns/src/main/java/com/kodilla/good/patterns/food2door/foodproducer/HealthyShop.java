@@ -6,6 +6,7 @@ import java.util.List;
 
 public class HealthyShop implements FoodProducer {
 
+    private Product product;
     private List<Product> products;
 
     public HealthyShop() {
@@ -17,8 +18,14 @@ public class HealthyShop implements FoodProducer {
     }
 
     public boolean process(Product product, int orderedQuantity) {
+        this.product = product;
         if(products.contains(product) && product.getQuantity() >= orderedQuantity)
             product.decreaseQuantity(orderedQuantity);
         return true;
+    }
+
+    @Override
+    public Product getProduct() {
+        return product;
     }
 }
