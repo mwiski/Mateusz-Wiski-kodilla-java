@@ -11,12 +11,12 @@ public class Application {
         OrderProcessor processor = new OrderProcessor();
 
         processor.order(retriever.retrieveExtraFoodShopOrder());
-        System.out.println(retriever.getProductQuantity(retriever.getExtraFoodShop()));
+        System.out.println(retriever.getExtraFoodShopProductQuantity());
 
         processor.order(retriever.retrieveHealthyShopOrder());
-        System.out.println(retriever.getProductQuantity(retriever.getHealthyShop()));
+        System.out.println(retriever.getHealthyShopProductQuantity());
 
         processor.order(retriever.retrieveGlutenFreeShopOrder());
-        System.out.println(retriever.getProductQuantity(retriever.getGlutenFreeShop()));
+        System.out.println(retriever.getGlutenFreeShopProductQuantity());
     }
 }

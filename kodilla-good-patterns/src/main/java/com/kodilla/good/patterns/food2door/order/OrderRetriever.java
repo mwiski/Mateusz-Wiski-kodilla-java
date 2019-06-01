@@ -1,6 +1,5 @@
 package com.kodilla.good.patterns.food2door.order;
 
-import com.kodilla.good.patterns.food2door.foodproducer.FoodProducer;
 import com.kodilla.good.patterns.food2door.product.Bread;
 import com.kodilla.good.patterns.food2door.purchaser.Purchaser;
 import com.kodilla.good.patterns.food2door.foodproducer.ExtraFoodShop;
@@ -46,19 +45,15 @@ public class OrderRetriever {
         return new Order(purchaser, glutenFreeShop, bread, 8, "001c");
     }
 
-    public ExtraFoodShop getExtraFoodShop() {
-        return extraFoodShop;
+    public int getExtraFoodShopProductQuantity() {
+        return extraFoodShop.getProduct().getQuantity();
     }
 
-    public HealthyShop getHealthyShop() {
-        return healthyShop;
+    public int getHealthyShopProductQuantity() {
+        return healthyShop.getProduct().getQuantity();
     }
 
-    public GlutenFreeShop getGlutenFreeShop() {
-        return glutenFreeShop;
-    }
-
-    public int getProductQuantity(FoodProducer foodProducer) {
-        return foodProducer.getProduct().getQuantity();
+    public int getGlutenFreeShopProductQuantity() {
+        return glutenFreeShop.getProduct().getQuantity();
     }
 }
