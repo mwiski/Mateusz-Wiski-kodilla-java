@@ -14,9 +14,6 @@ public class OrderRetriever {
     private ExtraFoodShop extraFoodShop;
     private HealthyShop healthyShop;
     private GlutenFreeShop glutenFreeShop;
-    private Order orderExtra;
-    private Order orderHealthy;
-    private Order orderGlutenFree;
 
     public OrderRetriever() {
         this.extraFoodShop = new ExtraFoodShop();
@@ -29,7 +26,7 @@ public class OrderRetriever {
         Purchaser purchaser = new Purchaser("Jan", "Kowalski", "SimpleStreet");
         Cranberry cranberry = new Cranberry("Dried cranberry", 10);
 
-        return orderExtra = new Order(purchaser, extraFoodShop, cranberry, 5, "001a");
+        return new Order(purchaser, extraFoodShop, cranberry, 5, "001a");
     }
 
     public Order retrieveHealthyShopOrder() {
@@ -38,7 +35,7 @@ public class OrderRetriever {
         Juice juice = new Juice("Orangejuice", 8, 1);
         healthyShop.addProduct(juice);
 
-        return orderHealthy = new Order(purchaser, healthyShop, juice, 8, "001b");
+        return new Order(purchaser, healthyShop, juice, 8, "001b");
     }
 
     public Order retrieveGlutenFreeShopOrder() {
@@ -46,7 +43,7 @@ public class OrderRetriever {
         Purchaser purchaser = new Purchaser("Jan", "Kowalski", "SimpleStreet");
         Bread bread = new Bread("Gluten-free bread", 8, 1);
 
-        return orderGlutenFree = new Order(purchaser, glutenFreeShop, bread, 8, "001c");
+        return new Order(purchaser, glutenFreeShop, bread, 8, "001c");
     }
 
     public ExtraFoodShop getExtraFoodShop() {
