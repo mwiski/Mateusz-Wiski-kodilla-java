@@ -4,55 +4,46 @@ import java.util.Objects;
 
 public final class Flight {
 
-    private final FlightType flightType;
-    private final CityType from;
-    private final CityType to;
-    private final CityType through;
+    private final City from;
+    private final City to;
+    private final City via;
 
-    public Flight(final CityType from, final CityType to, final CityType through) {
-        this.flightType = FlightType.CONNECTING;
+    public Flight(final City from, final City to, final City via) {
         this.from = from;
         this.to = to;
-        this.through = through;
+        this.via = via;
     }
 
-    public Flight(final CityType from, final CityType to) {
-        this.flightType = FlightType.DIRECT;
+    public Flight(final City from, final City to) {
         this.from = from;
         this.to = to;
-        this.through = null;
+        this.via = null;
     }
 
-    public FlightType getFlightType() {
-        return flightType;
-    }
-
-    public CityType getFrom() {
+    public City getFrom() {
         return from;
     }
 
-    public CityType getTo() {
+    public City getTo() {
         return to;
     }
 
-    public CityType getThrough() {
-        return through;
+    public City getVia() {
+        return via;
     }
 
     @Override
     public String toString() {
-        if (flightType == FlightType.CONNECTING) {
+        if (via == null) {
             return "Flight{" +
-                    "flightType = " + flightType +
-                    ", from = " + from +
+                    "from = " + from +
                     ", to = " + to +
-                    ", through = " + through +
                     '}';
         } else {
             return "Flight{" +
-                    "flightType = " + flightType +
-                    ", from = " + from +
+                    "from = " + from +
                     ", to = " + to +
+                    ", via = " + via +
                     '}';
         }
     }
@@ -62,14 +53,13 @@ public final class Flight {
         if (this == o) return true;
         if (!(o instanceof Flight)) return false;
         Flight flight = (Flight) o;
-        return flightType == flight.flightType &&
-                from == flight.from &&
+        return from == flight.from &&
                 to == flight.to &&
-                through == flight.through;
+                via == flight.via;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(flightType, from, to, through);
+        return Objects.hash(from, to, via);
     }
 }

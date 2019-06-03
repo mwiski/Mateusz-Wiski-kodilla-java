@@ -7,10 +7,10 @@ public class Application {
         FlightsRetriever retriever = new FlightsRetriever();
         FlightsProcessor flightsProcessor = new FlightsProcessor(retriever.retrieve());
 
-        System.out.println(flightsProcessor.findFlightFrom(CityType.WARSAW));
+        System.out.println(flightsProcessor.findFlightFrom(City.WARSAW));
         System.out.println();
-        System.out.println(flightsProcessor.findFlightTo(CityType.WARSAW));
+        System.out.println(flightsProcessor.findFlightTo(City.WARSAW));
         System.out.println();
-        System.out.println(flightsProcessor.findFlightThrough(CityType.GDANSK, CityType.WROCLAW, CityType.KRAKOW));
+        System.out.println(flightsProcessor.findFlightVia(City.KRAKOW));
     }
 }

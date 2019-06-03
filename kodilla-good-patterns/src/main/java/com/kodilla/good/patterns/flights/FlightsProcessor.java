@@ -11,23 +11,23 @@ public class FlightsProcessor {
         this.flights = flights;
     }
 
-    public String findFlightFrom(CityType city) {
+    public String findFlightFrom(City city) {
         return flights.stream()
                 .filter(flight -> flight.getFrom() == city)
                 .map(Flight::toString)
                 .collect(Collectors.joining("\n"));
     }
 
-    public String findFlightTo(CityType city) {
+    public String findFlightTo(City city) {
         return flights.stream()
                 .filter(flight -> flight.getTo() == city)
                 .map(Flight::toString)
                 .collect(Collectors.joining("\n"));
     }
 
-    public String findFlightThrough(CityType from, CityType to, CityType through) {
+    public String findFlightVia(City via) {
         return flights.stream()
-                .filter(flight -> flight.getFrom() == from && flight.getTo() == to && flight.getThrough() == through)
+                .filter(flight -> flight.getVia() == via)
                 .map(Flight::toString)
                 .collect(Collectors.joining("\n"));
     }

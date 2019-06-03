@@ -9,16 +9,16 @@ public class FlightsRetriever {
 
         List<Flight> flights = new ArrayList<>();
 
-        flights.add(new Flight(CityType.WARSAW, CityType.BERLIN));
-        flights.add(new Flight(CityType.WARSAW, CityType.KRAKOW));
-        flights.add(new Flight(CityType.WARSAW, CityType.KRAKOW, CityType.WROCLAW));
-        flights.add(new Flight(CityType.WARSAW, CityType.ROME, CityType.BERLIN));
-        flights.add(new Flight(CityType.LONDON, CityType.WARSAW));
-        flights.add(new Flight(CityType.BERLIN, CityType.WARSAW));
-        flights.add(new Flight(CityType.ROME, CityType.WARSAW, CityType.BERLIN));
-        flights.add(new Flight(CityType.WROCLAW, CityType.WARSAW));
-        flights.add(new Flight(CityType.GDANSK, CityType.WROCLAW, CityType.KRAKOW));
-        flights.add(new Flight(CityType.GDANSK, CityType.WROCLAW, CityType.WARSAW));
+        flights.add(new Flight(City.WARSAW, City.BERLIN));
+        flights.add(new Flight(City.WARSAW, City.KRAKOW));
+        flights.add(new Flight(City.WARSAW, City.KRAKOW, City.WROCLAW));
+        flights.add(new Flight(City.WARSAW, City.ROME, City.BERLIN));
+        flights.add(new Flight(City.LONDON, City.WARSAW));
+        flights.add(new Flight(City.BERLIN, City.WARSAW));
+        flights.add(new Flight(City.ROME, City.WARSAW, City.BERLIN));
+        flights.add(new Flight(City.WROCLAW, City.WARSAW));
+        flights.add(new Flight(City.GDANSK, City.WROCLAW, City.KRAKOW));
+        flights.add(new Flight(City.GDANSK, City.WROCLAW, City.WARSAW));
 
         return flights;
     }
