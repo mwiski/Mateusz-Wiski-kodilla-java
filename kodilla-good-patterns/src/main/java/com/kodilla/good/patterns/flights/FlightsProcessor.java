@@ -26,19 +26,11 @@ public class FlightsProcessor {
     }
 
     public String findConnectingFlights(City from, City to) {
-        List<City> via1 = flights.stream()
+        return flights.stream()
                 .filter(flight -> flight.getFrom() == from)
-                .map(flight -> flight.getTo())
-                .collect(Collectors.toList());
-
-        List<City> via2 = flights.stream()
-                .filter(flight -> flight.getTo() == to)
-                .map(flight -> flight.getFrom())
-                .collect(Collectors.toList());
-
-        return via1.stream()
-                .filter(city -> via2.contains(city))
+                .map(Flight::getTo)
+                .filter(city -> flights.stream().filter(flight -> flight.getTo() == to).map(Flight::getFrom).anyMatch(city1 -> city1 == city))
                 .map(City::toString)
-                .collect(Collectors.joining(", ", "Possible connecting flights from " + from.toString() + " to " + to.toString() + " via: ", "."));
+                .collect(Collectors.joining(" or ", "Possible connecting flights from " + from.toString() + " to " + to.toString() + " via: ", ""));
     }
 }
