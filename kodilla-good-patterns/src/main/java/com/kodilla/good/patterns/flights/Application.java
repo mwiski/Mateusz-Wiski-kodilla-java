@@ -11,6 +11,6 @@ public class Application {
         System.out.println();
         System.out.println(flightsProcessor.findFlightTo(City.WARSAW));
         System.out.println();
-        System.out.println(flightsProcessor.findFlightVia(City.KRAKOW));
+        System.out.println(flightsProcessor.findConnectingFlights(City.GDANSK, City.WROCLAW));
     }
 }
