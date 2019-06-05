@@ -29,7 +29,10 @@ public class FlightsProcessor {
         return flights.stream()
                 .filter(flight -> flight.getFrom() == from)
                 .map(Flight::getTo)
-                .filter(city -> flights.stream().filter(flight -> flight.getTo() == to).map(Flight::getFrom).anyMatch(city1 -> city1 == city))
+                .filter(city -> flights.stream()
+                        .filter(flight -> flight.getTo().equals(to))
+                        .map(Flight::getFrom)
+                        .anyMatch(c -> c.equals(city)))
                 .map(City::toString)
                 .collect(Collectors.joining(" or ", "Possible connecting flights from " + from.toString() + " to " + to.toString() + " via: ", ""));
     }
