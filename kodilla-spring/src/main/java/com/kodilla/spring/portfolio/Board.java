@@ -1,7 +1,5 @@
 package com.kodilla.spring.portfolio;
 
-import java.util.stream.Collectors;
-
 public final class Board {
 
     private final TaskList toDoList;
@@ -15,27 +13,24 @@ public final class Board {
     }
 
     public void addToToDoList(String task) {
-        toDoList.getTasks().add(task);
+        toDoList.addTask(task);
     }
 
     public void addToInProgressList(String task) {
-        inProgressList.getTasks().add(task);
+        inProgressList.addTask(task);
     }
 
     public void addToDoneList(String task) {
-        doneList.getTasks().add(task);
+        doneList.addTask(task);
     }
 
     public String getToDoListTasks() {
-        return toDoList.getTasks().stream()
-                .collect(Collectors.joining(", "));
+        return String.join(", ", toDoList.getTasks());
     }
 
     public String getInProgressListTasks() {
-        return inProgressList.getTasks().stream()
-                .collect(Collectors.joining(", "));    }
+        return String.join(", ", inProgressList.getTasks());    }
 
     public String getDoneListTasks() {
-        return doneList.getTasks().stream()
-                .collect(Collectors.joining(", "));    }
+        return String.join(", ", doneList.getTasks());    }
 }
