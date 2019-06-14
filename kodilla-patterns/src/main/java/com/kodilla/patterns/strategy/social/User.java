@@ -5,7 +5,7 @@ import com.kodilla.patterns.strategy.social.publisher.SocialPublisher;
 public class User {
 
     private final String name;
-    protected SocialPublisher socialPublisher;
+    private SocialPublisher socialPublisher;
 
     public User(String name) {
         this.name = name;
@@ -15,7 +15,7 @@ public class User {
         return socialPublisher.share();
     }
 
-    public void setSocialPublisher(SocialPublisher socialPublisher) {
+    protected void setSocialPublisher(SocialPublisher socialPublisher) {
         this.socialPublisher = socialPublisher;
     }
 }
