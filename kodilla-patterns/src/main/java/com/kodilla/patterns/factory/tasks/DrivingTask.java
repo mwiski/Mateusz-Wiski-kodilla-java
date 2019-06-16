@@ -5,7 +5,7 @@ public final class DrivingTask extends AbstractTask {
     private final String where;
     private final String using;
 
-    public DrivingTask(String taskName, String where, String using) {
+    public DrivingTask(final String taskName, final String where, final String using) {
         super(taskName);
         this.where = where;
         this.using = using;
@@ -14,7 +14,7 @@ public final class DrivingTask extends AbstractTask {
     @Override
     public String executeTask() {
 
-        executed = true;
+        setExecuted(true);
         return "Driven to: " + where + ", using: " + using;
     }
 }

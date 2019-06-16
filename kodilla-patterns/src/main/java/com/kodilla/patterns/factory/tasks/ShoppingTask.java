@@ -5,7 +5,7 @@ public final class ShoppingTask extends AbstractTask {
     private final String whatToBuy;
     private final double quantity;
 
-    public ShoppingTask(String taskName, String whatToBuy, double quantity) {
+    public ShoppingTask(final String taskName, final String whatToBuy, final double quantity) {
         super(taskName);
         this.whatToBuy = whatToBuy;
         this.quantity = quantity;
@@ -14,7 +14,7 @@ public final class ShoppingTask extends AbstractTask {
     @Override
     public String executeTask() {
 
-        executed = true;
+        setExecuted(true);
         return "Bought: " + whatToBuy + ", quantity: " + quantity;
     }
 }

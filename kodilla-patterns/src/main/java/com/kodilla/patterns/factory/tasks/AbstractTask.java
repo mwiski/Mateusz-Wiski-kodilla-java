@@ -1,15 +1,13 @@
 package com.kodilla.patterns.factory.tasks;
 
-public abstract class AbstractTask {
+public abstract class AbstractTask implements Task {
 
     private final String taskName;
-    boolean executed;
+    private boolean executed;
 
     public AbstractTask(final String taskName) {
         this.taskName = taskName;
     }
-
-    public abstract String executeTask();
 
     public String getTaskName() {
         return taskName;
@@ -17,5 +15,9 @@ public abstract class AbstractTask {
 
     public boolean isTaskExecuted() {
         return executed;
+    }
+
+    void setExecuted(boolean executed) {
+        this.executed = executed;
     }
 }
