@@ -6,12 +6,11 @@ import org.junit.Test;
 public class TaskFactoryTestSuite {
 
     private TaskFactory taskFactory = new TaskFactory();
-    private Task shoppingTask = taskFactory.createTask(TaskFactory.SHOPPINGTASK);
-    private Task paintingTask = taskFactory.createTask(TaskFactory.PAINTINGTASK);
-    private Task drivingTask = taskFactory.createTask(TaskFactory.DRIVINGTASK);
 
     @Test
     public void testCreateShoppingTask() {
+        //Given When
+        AbstractTask shoppingTask = taskFactory.createTask(TaskType.SHOPPINGTASK);
 
         //Then
         Assert.assertEquals("Buy paint", shoppingTask.getTaskName());
@@ -21,7 +20,10 @@ public class TaskFactoryTestSuite {
 
     @Test
     public void testExecuteShoppingTask() {
-        //When
+        //Given
+        AbstractTask shoppingTask = taskFactory.createTask(TaskType.SHOPPINGTASK);
+
+        // When
         shoppingTask.executeTask();
 
         //Then
@@ -30,6 +32,8 @@ public class TaskFactoryTestSuite {
 
     @Test
     public void testCreatePaintingTask() {
+        //Given When
+        AbstractTask paintingTask = taskFactory.createTask(TaskType.PAINTINGTASK);
 
         //Then
         Assert.assertEquals("Paint wall in the kitchen", paintingTask.getTaskName());
@@ -39,15 +43,20 @@ public class TaskFactoryTestSuite {
 
     @Test
     public void testExecutePaintingTask() {
+        //Given
+        AbstractTask paintingTask = taskFactory.createTask(TaskType.PAINTINGTASK);
+
         //When
-        shoppingTask.executeTask();
+        paintingTask.executeTask();
 
         //Then
-        Assert.assertTrue(shoppingTask.isTaskExecuted());
+        Assert.assertTrue(paintingTask.isTaskExecuted());
     }
 
     @Test
     public void testCreateDrivingTask() {
+        //Given When
+        AbstractTask drivingTask = taskFactory.createTask(TaskType.DRIVINGTASK);
 
         //Then
         Assert.assertEquals("Drive to work", drivingTask.getTaskName());
@@ -57,10 +66,13 @@ public class TaskFactoryTestSuite {
 
     @Test
     public void testExecuteDrivingTask() {
+        //Given
+        AbstractTask drivingTask = taskFactory.createTask(TaskType.DRIVINGTASK);
+
         //When
-        shoppingTask.executeTask();
+        drivingTask.executeTask();
 
         //Then
-        Assert.assertTrue(shoppingTask.isTaskExecuted());
+        Assert.assertTrue(drivingTask.isTaskExecuted());
     }
 }
