@@ -1,6 +1,6 @@
 package com.kodilla.patterns.builder.bigmac;
 
-public enum Bun {
+public enum BunType {
     SEZAME,
     WITHOUTSEZAM
 }

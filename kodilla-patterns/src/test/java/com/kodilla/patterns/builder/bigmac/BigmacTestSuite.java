@@ -8,22 +8,22 @@ public class BigmacTestSuite {
     @Test
     public void testBigmacBuild() {
         //Given When
-        Bigmac bigmac = new Bigmac.BigmacBuilder()
-                .bun(Bun.SEZAME)
+        Bigmac bigmac = new Bigmac.Builder()
+                .bun(BunType.SEZAME)
                 .burgers(2)
                 .sauce(Sauce.BARBECUE)
-                .ingredient(Ingredient.CHEESE)
-                .ingredient(Ingredient.LETTUCE)
-                .ingredient(Ingredient.CUCUMBER)
-                .ingredient(Ingredient.ONION)
-                .ingredient(Ingredient.MUSHROOM)
+                .addIngredient(Ingredient.CHEESE)
+                .addIngredient(Ingredient.LETTUCE)
+                .addIngredient(Ingredient.CUCUMBER)
+                .addIngredient(Ingredient.ONION)
+                .addIngredient(Ingredient.MUSHROOM)
                 .build();
 
         System.out.println(bigmac);
 
         //Then
         Assert.assertEquals(5, bigmac.getIngredients().size());
-        Assert.assertEquals(Bun.SEZAME, bigmac.getBun());
+        Assert.assertEquals(BunType.SEZAME, bigmac.getBunType());
         Assert.assertEquals(2, bigmac.getBurgers());
     }
 }

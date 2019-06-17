@@ -5,24 +5,24 @@ import java.util.List;
 
 public final class Bigmac {
 
-    private final Bun bun;
+    private final BunType bunType;
     private final int burgers;
     private final Sauce sauce;
     private final List<Ingredient> ingredients;
 
-    public static class BigmacBuilder {
-        private Bun bun;
+    public static class Builder {
+        private BunType bunType;
         private int burgers;
         private Sauce sauce;
         private List<Ingredient> ingredients = new ArrayList<>();
 
-        public BigmacBuilder bun(Bun bun) {
+        public Builder bun(BunType bunType) {
 
-            this.bun = bun;
+            this.bunType = bunType;
             return this;
         }
 
-        public BigmacBuilder burgers(int burgers) {
+        public Builder burgers(int burgers) {
             if (burgers < 4) {
                 this.burgers = burgers;
             } else {
@@ -31,36 +31,36 @@ public final class Bigmac {
             return this;
         }
 
-        public BigmacBuilder sauce(Sauce sauce) {
+        public Builder sauce(Sauce sauce) {
 
             this.sauce = sauce;
             return this;
         }
 
-        public BigmacBuilder ingredient(Ingredient ingredient) {
+        public Builder addIngredient(Ingredient ingredient) {
 
             ingredients.add(ingredient);
             return this;
         }
 
         public Bigmac build() {
-            if (bun != null) {
-                return new Bigmac(bun, burgers, sauce, ingredients);
+            if (bunType != null) {
+                return new Bigmac(bunType, burgers, sauce, ingredients);
             } else {
-                throw new IllegalStateException("Bigmac must have bun");
+                throw new IllegalStateException("Bigmac must have a bun");
             }
         }
     }
 
-    private Bigmac(final Bun bun, final int burgers, final Sauce sauce, final List<Ingredient> ingredients) {
-        this.bun = bun;
+    private Bigmac(final BunType bunType, final int burgers, final Sauce sauce, final List<Ingredient> ingredients) {
+        this.bunType = bunType;
         this.burgers = burgers;
         this.sauce = sauce;
         this.ingredients = new ArrayList<>(ingredients);
     }
 
-    public Bun getBun() {
-        return bun;
+    public BunType getBunType() {
+        return bunType;
     }
 
     public int getBurgers() {
@@ -74,7 +74,7 @@ public final class Bigmac {
     @Override
     public String toString() {
         return "Bigmac{" +
-                "bun='" + bun + '\'' +
+                "bunType='" + bunType + '\'' +
                 ", burgers=" + burgers +
                 ", sauce='" + sauce + '\'' +
                 ", ingredients=" + ingredients +
