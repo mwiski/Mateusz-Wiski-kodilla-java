@@ -1,11 +1,17 @@
-INSERT INTO POSTS (USER_ID, BODY)
-VALUES (3, "Hey Thomas!");
+INSERT INTO POSTS (ID, USER_ID, BODY)
+VALUES (8, 3, "Hey Thomas!");
+
+INSERT INTO POSTS (ID, USER_ID, BODY)
+VALUES (9, 2, "Where is last comment?");
+
+INSERT INTO POSTS (ID, USER_ID, BODY)
+VALUES (10, 5, "Someone is deleting comments");
 
 UPDATE POSTS
 SET BODY = "To delete"
-WHERE ID = 8;
+WHERE ID = 8 OR ID = 9 OR ID = 10;
 
 DELETE FROM POSTS
-WHERE ID = 8;
+WHERE ID = 8 OR ID = 9 OR ID = 10;
 
 COMMIT;
