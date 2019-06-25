@@ -12,6 +12,5 @@ include 'kodilla-spring-intro'
 include 'kodilla-spring'
 include 'kodilla-patterns'
 include 'kodilla-sql'
-include 'kodilla-sql'
 include 'kodilla-jdbc'
 
