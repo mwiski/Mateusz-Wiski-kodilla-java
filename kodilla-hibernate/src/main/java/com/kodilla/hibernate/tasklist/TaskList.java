@@ -22,7 +22,7 @@ public class TaskList {
     @Id
     @GeneratedValue
     @NotNull
-    @Column(name = "ID", unique = true)
+    @Column(name = "ID")
     public int getId() {
         return id;
     }
