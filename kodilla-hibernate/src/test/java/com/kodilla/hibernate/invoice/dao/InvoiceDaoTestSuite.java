@@ -17,8 +17,8 @@ public class InvoiceDaoTestSuite {
 
     @Autowired
     private InvoiceDao invoiceDao;
+    @Autowired
     private ProductDao productDao;
-    private ItemDao itemDao;
 
     @Test
     public void testInvoiceDaoSave() {
@@ -30,10 +30,6 @@ public class InvoiceDaoTestSuite {
         Item mouseItem1 = new Item(mouse, BigDecimal.valueOf(30), 2, BigDecimal.valueOf(20));
         Item mouseItem2 = new Item(mouse, BigDecimal.valueOf(35), 3, BigDecimal.valueOf(25));
 
-        keyboard.addItem(keyboardItem);
-        mouse.addItem(mouseItem1);
-        mouse.addItem(mouseItem2);
-
         Invoice invoice1 = new Invoice("123d42");
         Invoice invoice2 = new Invoice("987a43");
 
@@ -42,6 +38,8 @@ public class InvoiceDaoTestSuite {
         invoice2.addItem(mouseItem2);
 
         //When
+        productDao.save(keyboard);
+        productDao.save(mouse);
         invoiceDao.save(invoice1);
         invoiceDao.save(invoice2);
 
@@ -51,11 +49,11 @@ public class InvoiceDaoTestSuite {
         assertThat(mouseItem2.getId()).isGreaterThan(0);
 
         //CleanUp
-        //try {
-        //    invoiceDao.deleteById(invoice1.getId());
-        //    invoiceDao.deleteById(invoice2.getId());
-        //} catch (Exception e) {
-            //do nothing
-        //}
+        try {
+            invoiceDao.deleteById(invoice1.getId());
+            invoiceDao.deleteById(invoice2.getId());
+        } catch (Exception e) {
+        //    do nothing
+        }
     }
 }
