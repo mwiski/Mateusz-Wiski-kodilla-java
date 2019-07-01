@@ -4,7 +4,12 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
+@NamedQuery(
+        name = "Employee.retrieveEmployeesWithLastName",
+        query = "FROM Employee WHERE LASTNAME LIKE :LASTNAME"
+)
 @Entity
 @Table(name = "EMPLOYEES")
 public class Employee {
@@ -65,5 +70,27 @@ public class Employee {
 
     private void setCompanies(List<Company> companies) {
         this.companies = companies;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Employee)) return false;
+        Employee employee = (Employee) o;
+        return firstname.equals(employee.firstname) &&
+                lastname.equals(employee.lastname);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstname, lastname);
     }
 }
