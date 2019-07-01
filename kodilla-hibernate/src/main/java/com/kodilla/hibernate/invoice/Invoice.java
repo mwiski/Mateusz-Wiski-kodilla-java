@@ -29,7 +29,7 @@ public class Invoice {
     }
 
     @NotNull
-    @Column(name = "INVOICE_NUMBER")
+    @Column(name = "NUMBER")
     public String getNumber() {
         return number;
     }
