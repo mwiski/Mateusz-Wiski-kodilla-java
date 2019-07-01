@@ -52,6 +52,8 @@ public class InvoiceDaoTestSuite {
         try {
             invoiceDao.deleteById(invoice1.getId());
             invoiceDao.deleteById(invoice2.getId());
+            productDao.deleteById(keyboard.getId());
+            productDao.deleteById(mouse.getId());
         } catch (Exception e) {
         //    do nothing
         }
