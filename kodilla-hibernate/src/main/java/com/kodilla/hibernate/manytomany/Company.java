@@ -9,7 +9,7 @@ import java.util.Objects;
 @NamedNativeQuery(
         name = "Company.retrieveCompaniesWithNameStarting",
         query = "SELECT * FROM COMPANIES" +
-                " WHERE LEFT(COMPANY_NAME, 3) = :ABC",
+                " WHERE SUBSTR(COMPANY_NAME, 1, 3) = :ABC",
         resultClass = Company.class
 )
 @Entity
