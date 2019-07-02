@@ -7,13 +7,18 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.junit4.SpringRunner;
+import java.util.List;
+import static org.assertj.core.api.Java6Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CompanyDaoTestSuite {
     @Autowired
     CompanyDao companyDao;
+    @Autowired
+    EmployeeDao employeeDao;
 
     @Test
     public void testSaveManyToMany(){
@@ -58,6 +63,58 @@ public class CompanyDaoTestSuite {
             companyDao.deleteById(greyMatterId);
         } catch (Exception e) {
             //do nothing
+        }
+    }
+
+    @Test
+    public void testRetrieveNames() {
+        //Given
+        Employee johnSmith = new Employee("John", "Smith");
+        Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
+        Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
+        Employee adamSmith = new Employee("Adam", "Smith");
+
+        Company softwareMachine = new Company("Software Machine");
+        Company softwareMaesters = new Company("Software Maesters");
+        Company greyMatter = new Company("Grey Matter");
+
+        softwareMachine.getEmployees().add(johnSmith);
+        softwareMachine.getEmployees().add(adamSmith);
+        softwareMaesters.getEmployees().add(stephanieClarckson);
+        softwareMaesters.getEmployees().add(lindaKovalsky);
+        greyMatter.getEmployees().add(johnSmith);
+        greyMatter.getEmployees().add(lindaKovalsky);
+
+        johnSmith.getCompanies().add(softwareMachine);
+        johnSmith.getCompanies().add(greyMatter);
+        stephanieClarckson.getCompanies().add(softwareMaesters);
+        lindaKovalsky.getCompanies().add(softwareMaesters);
+        lindaKovalsky.getCompanies().add(greyMatter);
+        adamSmith.getCompanies().add(softwareMachine);
+
+        companyDao.save(softwareMachine);
+        companyDao.save(softwareMaesters);
+        companyDao.save(greyMatter);
+
+        //When
+        List<Employee> employeesWithLastName = employeeDao.retrieveEmployeesWithLastName("Smith");
+        List<Company> companiesStartingWith = companyDao.retrieveCompaniesWithNameStarting("sof");
+
+        //Then
+        try {
+            assertThat(employeesWithLastName).containsExactly(johnSmith, adamSmith);
+            assertThat(employeesWithLastName.get(0).getId()).isGreaterThan(0);
+            assertThat(companiesStartingWith).containsExactly(softwareMachine, softwareMaesters);
+            assertThat(companiesStartingWith.get(0).getId()).isGreaterThan(0);
+        } finally {
+            //CleanUp
+            try {
+                companyDao.deleteById(softwareMachine.getId());
+                companyDao.deleteById(softwareMaesters.getId());
+                companyDao.deleteById(greyMatter.getId());
+            } catch (EmptyResultDataAccessException e) {
+                //do nothing
+            }
         }
     }
 }

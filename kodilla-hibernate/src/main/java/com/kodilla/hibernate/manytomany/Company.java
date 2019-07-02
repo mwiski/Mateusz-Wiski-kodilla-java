@@ -4,7 +4,14 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
+@NamedNativeQuery(
+        name = "Company.retrieveCompaniesWithNameStarting",
+        query = "SELECT * FROM COMPANIES" +
+                " WHERE SUBSTR(COMPANY_NAME, 1, 3) = :ABC",
+        resultClass = Company.class
+)
 @Entity
 @Table(name = "COMPANIES")
 public class Company {
@@ -48,5 +55,25 @@ public class Company {
 
     private void setEmployees(List<Employee> employees) {
         this.employees = employees;
+    }
+
+    @Override
+    public String toString() {
+        return "Company{" +
+                "name='" + name + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Company)) return false;
+        Company company = (Company) o;
+        return name.equals(company.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
