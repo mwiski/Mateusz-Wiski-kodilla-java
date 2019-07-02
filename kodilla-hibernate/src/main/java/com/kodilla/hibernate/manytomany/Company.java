@@ -9,7 +9,7 @@ import java.util.Objects;
 @NamedNativeQuery(
         name = "Company.retrieveCompaniesWithNameStarting",
         query = "SELECT * FROM COMPANIES" +
-                " WHERE COMPANY_NAME LIKE CONCAT(:ABC, '%')",
+                " WHERE LEFT(COMPANY_NAME, 3) = :ABC",
         resultClass = Company.class
 )
 @Entity
