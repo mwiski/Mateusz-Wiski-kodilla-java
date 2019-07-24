@@ -1,4 +1,4 @@
-package com.kodilla.rps.shapes;
+package com.kodilla.rps.model;
 
 public enum Shape {
 
