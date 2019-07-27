@@ -28,6 +28,7 @@ public class UserInterface {
 
         System.out.println("Please, enter number of rounds to win one game:");
         int rounds = scanner.nextInt();
+        scanner.nextLine();
 
         return new GameDefinition(name, rounds);
     }

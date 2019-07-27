@@ -10,9 +10,14 @@ import com.kodilla.rps.statistics.Statistics;
 public class PlayerStrategy {
 
     private Move playerMove;
+    private String playerInput;
 
+    public String scanMove() {
+        return playerInput = UserInterface.scanPlayerMove();
+    }
+    
     public Move getMove(String move) {
-        switch (UserInterface.scanPlayerMove()) {
+        switch (move) {
             case "1": {
                 return playerMove = Move.ROCK;
             }
@@ -27,13 +32,9 @@ public class PlayerStrategy {
             }
         }
     }
-
-    public String playerMove() {
-        String move = UserInterface.scanPlayerMove();
-        if (move.equals("1") || move.equals("2") || move.equals("3") || move.equals("n") || move.equals("x")) {
-            return move;
-        }
-        return "You chose wrong character. Try again:" + playerMove();
+    
+    public boolean validate() {
+        return playerInput.equals("1") || playerInput.equals("2") || playerInput.equals("3") || playerInput.equals("n") || playerInput.equals("x");
     }
 
     public GameDefinition init() {
@@ -43,6 +44,10 @@ public class PlayerStrategy {
 
     public Move getPlayerMove() {
         return playerMove;
+    }
+
+    public String getPlayerInput() {
+        return playerInput;
     }
 
     public void react(RoundResult result, Round round, Statistics statistics) {

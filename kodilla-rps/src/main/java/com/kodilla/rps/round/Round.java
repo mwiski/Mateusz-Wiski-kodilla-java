@@ -24,11 +24,15 @@ public class Round {
 
     public RoundResult play(PlayerStrategy playerStrategy) {
         UserInterface.printInstruction();
-        String playerMove = playerStrategy.playerMove();
-        result = checker.check(playerMove);
+        playerStrategy.scanMove();
+        if (!playerStrategy.validate()) {
+            System.out.println("You chose wrong character. Try again:");
+            play(playerStrategy);
+        }
+        result = checker.check(playerStrategy.getPlayerInput());
 
         if (result == null) {
-            result = checker.compare(playerStrategy.getMove(playerMove), computerStrategy.getMove());
+            result = checker.compare(playerStrategy.getMove(playerStrategy.getPlayerInput()), computerStrategy.getMove());
             statistics.addResult(result);
             afterRoundAction(playerStrategy, this);
         }
