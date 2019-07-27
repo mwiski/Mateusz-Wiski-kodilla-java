@@ -1,36 +1,47 @@
 package com.kodilla.rps.round;
 
-import com.kodilla.rps.model.Shape;
+import com.kodilla.rps.model.Move;
+import com.kodilla.rps.statistics.RoundResult;
 
 public class RoundChecker {
 
-    private Shape compare(Shape userShape, Shape computerShape) {
-        if (userShape.equals(computerShape)) {
-            return null;
+    public RoundResult compare(Move playerMove, Move computerMove) {
+        if (playerMove.equals(computerMove)) {
+            return RoundResult.DRAW;
         }
 
-        switch (userShape) {
+        switch (playerMove) {
             case ROCK: {
-                if (computerShape.equals(Shape.PAPER)) {
-                    return computerShape;
+                if (computerMove.equals(Move.PAPER)) {
+                    return RoundResult.LOSE;
                 }
-                return userShape;
+                return RoundResult.WIN;
             }
             case PAPER: {
-                if (computerShape.equals(Shape.SCISSORS)) {
-                    return computerShape;
+                if (computerMove.equals(Move.SCISSORS)) {
+                    return RoundResult.LOSE;
                 }
-                return userShape;
+                return RoundResult.WIN;
             }
             case SCISSORS: {
-                if (computerShape.equals(Shape.ROCK)) {
-                    return computerShape;
+                if (computerMove.equals(Move.ROCK)) {
+                    return RoundResult.LOSE;
                 }
-                return userShape;
+                return RoundResult.WIN;
             }
             default: {
-                throw new IllegalArgumentException("User shape is not correct.");
+                throw new IllegalArgumentException("Player move is not correct.");
             }
+        }
+    }
+
+    public RoundResult check(String playerMove) {
+        if (playerMove.equals("n")) {
+            return RoundResult.END;
+        } else if (playerMove.equals("x")) {
+            return RoundResult.EXIT;
+        } else {
+            return null;
         }
     }
 }

@@ -2,22 +2,19 @@ package com.kodilla.rps.gameDefinition;
 
 public class GameDefinition {
 
-    private String userName;
+    private String playerName;
     private int roundsToWin;
 
-    public String getUserName() {
-        return userName;
+    public GameDefinition(String playerName, int roundsToWin) {
+        this.playerName = playerName;
+        this.roundsToWin = roundsToWin;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public String getPlayerName() {
+        return playerName;
     }
 
     public int getRoundsToWin() {
         return roundsToWin;
-    }
-
-    public void setRoundsToWin(int roundsToWin) {
-        this.roundsToWin = roundsToWin;
     }
 }

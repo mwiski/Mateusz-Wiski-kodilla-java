@@ -4,5 +4,7 @@ public enum RoundResult {
 
     WIN,
     LOSE,
-    DRAW
+    DRAW,
+    EXIT,
+    END
 }
