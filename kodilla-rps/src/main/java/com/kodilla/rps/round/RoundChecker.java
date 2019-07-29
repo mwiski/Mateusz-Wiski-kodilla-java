@@ -35,7 +35,7 @@ public class RoundChecker {
         }
     }
 
-    public RoundResult check(String playerMove) {
+    public RoundResult checkIfEndOrExit(String playerMove) {
         if (playerMove.equals("n")) {
             return RoundResult.END;
         } else if (playerMove.equals("x")) {

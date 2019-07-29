@@ -1,9 +1,5 @@
 package com.kodilla.rps.statistics;
 
-import com.kodilla.rps.gui.UserInterface;
-import com.kodilla.rps.round.Round;
-import com.kodilla.rps.strategy.PlayerStrategy;
-
 public class Statistics {
 
     private int playerRoundResult;
@@ -20,8 +16,12 @@ public class Statistics {
         return 0;
     }
 
-    public int addWin(int win) {
-        return win++;
+    public void addWins() {
+        wins++;
+    }
+
+    public void addLosts(){
+        losts++;
     }
 
     public void resetRoundScore() {
@@ -29,18 +29,15 @@ public class Statistics {
         computerRoundResult = 0;
     }
 
-    public void checkGameResult(int roundsToWin, String playerName, PlayerStrategy playerStrategy, Round round) {
+    public boolean checkGameResult(int roundsToWin) {
         if (playerRoundResult == roundsToWin) {
-            addWin(wins);
-            UserInterface.printWinner(playerName, wins, losts);
-            resetRoundScore();
-            UserInterface.printAfterGameInfo(playerStrategy, round, this);
+            addWins();
+            return true;
         } else if (computerRoundResult == roundsToWin) {
-            addWin(losts);
-            UserInterface.printWinner("Computer", wins, losts);
-            resetRoundScore();
-            UserInterface.printAfterGameInfo(playerStrategy, round, this);
+            addLosts();
+            return true;
         }
+        return false;
     }
 
     public int getPlayerRoundResult() {
@@ -49,5 +46,13 @@ public class Statistics {
 
     public int getComputerRoundResult() {
         return computerRoundResult;
+    }
+
+    public int getWins() {
+        return wins;
+    }
+
+    public int getLosts() {
+        return losts;
     }
 }

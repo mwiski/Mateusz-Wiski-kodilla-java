@@ -11,44 +11,54 @@ public class Round {
 
     private final RoundChecker checker;
     private ComputerStrategy computerStrategy;
+    private PlayerStrategy playerStrategy;
     private Statistics statistics;
     private GameDefinition definition;
     private RoundResult result;
+    private UserInterface gui;
 
-    public Round(Statistics statistics, GameDefinition definition) {
+    public Round(Statistics statistics, GameDefinition definition, UserInterface gui) {
         this.checker = new RoundChecker();
         this.computerStrategy = new ComputerStrategy();
+        this.playerStrategy = new PlayerStrategy();
         this.statistics = statistics;
         this.definition = definition;
+        this.gui = gui;
     }
 
-    public RoundResult play(PlayerStrategy playerStrategy) {
-        UserInterface.printInstruction();
-        playerStrategy.scanMove();
+    public RoundResult play(AfterRound afterRound) {
+        gui.printInstruction();
+        playerStrategy.scanMove(gui);
         if (!playerStrategy.validate()) {
             System.out.println("You chose wrong character. Try again:");
-            play(playerStrategy);
+            play(afterRound);
         }
-        result = checker.check(playerStrategy.getPlayerInput());
+        result = checker.checkIfEndOrExit(playerStrategy.getPlayerInput());
 
-        if (result == null) {
-            result = checker.compare(playerStrategy.getMove(playerStrategy.getPlayerInput()), computerStrategy.getMove());
-            statistics.addResult(result);
-            afterRoundAction(playerStrategy, this);
-        }
+        checkMoves();
+        checkGameWinner(afterRound);
 
         return result;
     }
 
-    public void afterRoundAction(PlayerStrategy playerStrategy, Round round) {
+    private void checkMoves() {
+        if (result == null) {
+            result = checker.compare(playerStrategy.getMove(), computerStrategy.getMove());
+            statistics.addResult(result);
+            gui.printRoundResult(definition.getPlayerName(),
+                    playerStrategy.getPlayerMove(),
+                    computerStrategy.getComputerMove(),
+                    result,
+                    statistics.getPlayerRoundResult(),
+                    statistics.getComputerRoundResult());
+        }
+    }
 
-        UserInterface.printRoundResult(definition.getPlayerName(),
-                playerStrategy.getPlayerMove(),
-                computerStrategy.getComputerMove(),
-                result,
-                statistics.getPlayerRoundResult(),
-                statistics.getComputerRoundResult());
-
-        statistics.checkGameResult(definition.getRoundsToWin(), definition.getPlayerName(), playerStrategy, round);
+    private void checkGameWinner(AfterRound afterRound) {
+        if (statistics.checkGameResult(definition.getRoundsToWin())) {
+            gui.printWinner(definition.getPlayerName(), statistics.getWins(), statistics.getLosts());
+            statistics.resetRoundScore();
+            gui.printAfterGameInfo(afterRound, this, statistics);
+        }
     }
 }
