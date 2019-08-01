@@ -1,7 +1,8 @@
 package com.kodilla.rps.round;
 
+import com.kodilla.rps.gui.UserInterface;
 import com.kodilla.rps.model.Move;
-import com.kodilla.rps.statistics.RoundResult;
+import com.kodilla.rps.model.RoundResult;
 
 public class RoundChecker {
 
@@ -35,11 +36,11 @@ public class RoundChecker {
         }
     }
 
-    public RoundResult checkIfEndOrExit(String playerMove) {
+    public RoundResult checkIfResetOrExit(UserInterface gui, String playerMove) {
         if (playerMove.equals("n")) {
-            return RoundResult.END;
+            return gui.resetGame();
         } else if (playerMove.equals("x")) {
-            return RoundResult.EXIT;
+            return gui.exitGame();
         } else {
             return null;
         }

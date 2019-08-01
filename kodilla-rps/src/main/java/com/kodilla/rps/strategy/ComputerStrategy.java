@@ -10,7 +10,7 @@ public class ComputerStrategy implements Strategy {
     private static Random random = new Random();
 
     public Move getMove() {
-        return computerMove = Move.get(random.nextInt(3));
+        return Move.get(random.nextInt(3));
     }
 
     public Move getComputerMove() {

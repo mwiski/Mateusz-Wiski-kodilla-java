@@ -1,8 +1,8 @@
 package com.kodilla.rps.round;
 
-import com.kodilla.rps.gameDefinition.GameDefinition;
 import com.kodilla.rps.gui.UserInterface;
-import com.kodilla.rps.statistics.RoundResult;
+import com.kodilla.rps.model.GameDefinition;
+import com.kodilla.rps.model.RoundResult;
 import com.kodilla.rps.statistics.Statistics;
 import com.kodilla.rps.strategy.ComputerStrategy;
 import com.kodilla.rps.strategy.PlayerStrategy;
@@ -26,26 +26,26 @@ public class Round {
         this.gui = gui;
     }
 
-    public RoundResult play(AfterRound afterRound) {
-        gui.printInstruction();
+    public boolean play() {
+        gui.showInstruction();
         playerStrategy.scanMove(gui);
-        if (!playerStrategy.validate()) {
-            System.out.println("You chose wrong character. Try again:");
-            play(afterRound);
-        }
-        result = checker.checkIfEndOrExit(playerStrategy.getPlayerInput());
+        result = checker.checkIfResetOrExit(gui, playerStrategy.getPlayerInput());
 
         checkMoves();
-        checkGameWinner(afterRound);
+        checkGameWinner();
 
-        return result;
+        if (checkGameWinner()) {
+
+            return true;
+        }
+        return false;
     }
 
     private void checkMoves() {
         if (result == null) {
             result = checker.compare(playerStrategy.getMove(), computerStrategy.getMove());
             statistics.addResult(result);
-            gui.printRoundResult(definition.getPlayerName(),
+            gui.showRoundResult(definition.getPlayerName(),
                     playerStrategy.getPlayerMove(),
                     computerStrategy.getComputerMove(),
                     result,
@@ -54,11 +54,12 @@ public class Round {
         }
     }
 
-    private void checkGameWinner(AfterRound afterRound) {
+    private boolean checkGameWinner() {
         if (statistics.checkGameResult(definition.getRoundsToWin())) {
-            gui.printWinner(definition.getPlayerName(), statistics.getWins(), statistics.getLosts());
+            gui.showWinner(definition, statistics.getWins(), statistics.getLosts());
             statistics.resetRoundScore();
-            gui.printAfterGameInfo(afterRound, this, statistics);
+            return true;
         }
+        return false;
     }
 }

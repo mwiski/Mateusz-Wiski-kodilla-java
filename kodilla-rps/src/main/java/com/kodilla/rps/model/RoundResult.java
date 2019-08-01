@@ -1,4 +1,4 @@
-package com.kodilla.rps.statistics;
+package com.kodilla.rps.model;
 
 public enum RoundResult {
 
@@ -6,5 +6,6 @@ public enum RoundResult {
     LOSE,
     DRAW,
     EXIT,
-    END
+    RESET,
+    CONTINUE
 }

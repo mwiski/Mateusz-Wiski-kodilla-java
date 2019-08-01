@@ -1,5 +1,7 @@
 package com.kodilla.rps.statistics;
 
+import com.kodilla.rps.model.RoundResult;
+
 public class Statistics {
 
     private int playerRoundResult;

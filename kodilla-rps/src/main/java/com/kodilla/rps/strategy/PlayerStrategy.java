@@ -28,10 +28,6 @@ public class PlayerStrategy implements Strategy {
             }
         }
     }
-    
-    public boolean validate() {
-        return playerInput.equals("1") || playerInput.equals("2") || playerInput.equals("3") || playerInput.equals("n") || playerInput.equals("x");
-    }
 
     public Move getPlayerMove() {
         return playerMove;

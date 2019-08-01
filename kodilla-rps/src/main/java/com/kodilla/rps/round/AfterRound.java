@@ -1,37 +1,33 @@
 package com.kodilla.rps.round;
 
-import com.kodilla.rps.gameDefinition.GameDefinition;
 import com.kodilla.rps.gui.UserInterface;
-import com.kodilla.rps.statistics.RoundResult;
+import com.kodilla.rps.model.GameDefinition;
+import com.kodilla.rps.model.RoundResult;
 import com.kodilla.rps.statistics.Statistics;
 
 public class AfterRound {
 
-    public void react(UserInterface gui, RoundResult result, Round round, Statistics statistics) {
+    public boolean checkRoundResult(RoundResult result, Round round, Statistics statistics, UserInterface gui) {
         switch (result) {
-            case WIN: {
-                react(gui, round.play(this), round, statistics);
+            case WIN:
+            case LOSE:
+            case DRAW:
+            case CONTINUE: {
+                checkRoundResult(round.play(), round, statistics, gui);
+                return false;
             }
-            case LOSE: {
-                react(gui, round.play(this), round, statistics);
-            }
-            case DRAW: {
-                react(gui, round.play(this), round, statistics);
-            }
-            case END: {
-                if (gui.resetGameInfo().equals("y")) {
-                    statistics.resetRoundScore();
-                    gui.printIntro();
-                    GameDefinition definition = gui.nameAndRoundsToWinQuestion();
-                    react(gui, round.play(this), new Round(statistics, definition, gui), statistics);
-                }
-                react(gui, round.play(this), round, statistics);
+            case RESET: {
+                statistics.resetRoundScore();
+                GameDefinition definition = new GameDefinition(gui.nameQuestion(), gui.roundsQuestion());
+                Round newRound = new Round(statistics, definition, gui);
+                checkRoundResult(newRound.play(), newRound, statistics, gui);
+                return true;
             }
             case EXIT: {
-                if (gui.exitGameInfo().equals("y")) {
-                    System.exit(0);
-                }
-                react(gui, round.play(this), round, statistics);
+                System.exit(0);
+            }
+            default: {
+                return false;
             }
         }
     }

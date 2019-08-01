@@ -1,4 +1,4 @@
-package com.kodilla.rps.gameDefinition;
+package com.kodilla.rps.model;
 
 public class GameDefinition {
 

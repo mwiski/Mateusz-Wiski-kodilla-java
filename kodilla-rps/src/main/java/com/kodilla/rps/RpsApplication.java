@@ -6,7 +6,7 @@ import com.kodilla.rps.gui.SimpleUserInterface;
 public class RpsApplication {
 
     public static void main(String[] args) {
-        GameRunner gr = new GameRunner(new SimpleUserInterface());
-        gr.run();
+        GameRunner gameRunner = new GameRunner(new SimpleUserInterface());
+        gameRunner.run();
     }
 }
