@@ -4,57 +4,55 @@ import com.kodilla.rps.model.RoundResult;
 
 public class Statistics {
 
-    private int playerRoundResult;
-    private int computerRoundResult;
-    private int wins;
-    private int losts;
+    private int playerRoundsWin;
+    private int playerRoundsLost;
+    private int roundNumber;
 
-    public int addResult(RoundResult result) {
-        if (result == RoundResult.WIN) {
-            return playerRoundResult++;
-        } else if (result == RoundResult.LOSE) {
-            return computerRoundResult++;
+    public void updateStatistics(RoundResult result) {
+        switch (result) {
+            case WIN: {
+                roundNumber++;
+                playerRoundsWin++;
+                break;
+            }
+            case LOSE: {
+                roundNumber++;
+                playerRoundsLost++;
+                break;
+            }
+            case DRAW: {
+                roundNumber++;
+                break;
+            }
         }
-        return 0;
-    }
-
-    public void addWins() {
-        wins++;
-    }
-
-    public void addLosts(){
-        losts++;
     }
 
     public void resetRoundScore() {
-        playerRoundResult = 0;
-        computerRoundResult = 0;
+        playerRoundsWin = 0;
+        playerRoundsLost = 0;
     }
 
-    public boolean checkGameResult(int roundsToWin) {
-        if (playerRoundResult == roundsToWin) {
-            addWins();
-            return true;
-        } else if (computerRoundResult == roundsToWin) {
-            addLosts();
-            return true;
+    public boolean isGameOn(int roundsToWin) {
+        if (playerRoundsWin == roundsToWin || playerRoundsLost == roundsToWin) {
+            resetRoundNumber();
+            return false;
         }
-        return false;
+        return true;
     }
 
-    public int getPlayerRoundResult() {
-        return playerRoundResult;
+    public void resetRoundNumber() {
+        roundNumber = 0;
     }
 
-    public int getComputerRoundResult() {
-        return computerRoundResult;
+    public int getPlayerRoundsWin() {
+        return playerRoundsWin;
     }
 
-    public int getWins() {
-        return wins;
+    public int getComputerRoundsLost() {
+        return playerRoundsLost;
     }
 
-    public int getLosts() {
-        return losts;
+    public int getRoundNumber() {
+        return roundNumber;
     }
 }

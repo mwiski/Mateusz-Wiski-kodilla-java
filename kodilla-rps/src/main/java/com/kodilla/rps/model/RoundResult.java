@@ -6,6 +6,5 @@ public enum RoundResult {
     LOSE,
     DRAW,
     EXIT,
-    RESET,
-    CONTINUE
+    RESET
 }

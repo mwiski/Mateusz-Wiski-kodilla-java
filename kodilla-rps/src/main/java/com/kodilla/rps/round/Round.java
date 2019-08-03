@@ -9,57 +9,32 @@ import com.kodilla.rps.strategy.PlayerStrategy;
 
 public class Round {
 
+    private final int number;
     private final RoundChecker checker;
     private ComputerStrategy computerStrategy;
     private PlayerStrategy playerStrategy;
     private Statistics statistics;
-    private GameDefinition definition;
-    private RoundResult result;
     private UserInterface gui;
+    private GameDefinition definition;
 
-    public Round(Statistics statistics, GameDefinition definition, UserInterface gui) {
-        this.checker = new RoundChecker();
+    public Round(Statistics statistics, UserInterface gui, GameDefinition definition) {
+        this.number = statistics.getRoundNumber() + 1;
         this.computerStrategy = new ComputerStrategy();
-        this.playerStrategy = new PlayerStrategy();
+        this.gui = gui;
+        this.playerStrategy = new PlayerStrategy(gui);
         this.statistics = statistics;
         this.definition = definition;
-        this.gui = gui;
+        this.checker = new RoundChecker();
     }
 
-    public boolean play() {
+    public RoundResult play() {
+        gui.printRoundNumber(number);
         gui.showInstruction();
-        playerStrategy.scanMove(gui);
-        result = checker.checkIfResetOrExit(gui, playerStrategy.getPlayerInput());
-
-        checkMoves();
-        checkGameWinner();
-
-        if (checkGameWinner()) {
-
-            return true;
+        RoundResult result = checker.compareMoves(playerStrategy.getMove(), computerStrategy.getMove());
+        if (!result.equals(RoundResult.RESET) && !result.equals(RoundResult.EXIT)) {
+            statistics.updateStatistics(result);
+            gui.showRoundResult(definition, playerStrategy.getPlayerMove(), computerStrategy.getComputerMove(), result, statistics);
         }
-        return false;
-    }
-
-    private void checkMoves() {
-        if (result == null) {
-            result = checker.compare(playerStrategy.getMove(), computerStrategy.getMove());
-            statistics.addResult(result);
-            gui.showRoundResult(definition.getPlayerName(),
-                    playerStrategy.getPlayerMove(),
-                    computerStrategy.getComputerMove(),
-                    result,
-                    statistics.getPlayerRoundResult(),
-                    statistics.getComputerRoundResult());
-        }
-    }
-
-    private boolean checkGameWinner() {
-        if (statistics.checkGameResult(definition.getRoundsToWin())) {
-            gui.showWinner(definition, statistics.getWins(), statistics.getLosts());
-            statistics.resetRoundScore();
-            return true;
-        }
-        return false;
+        return result;
     }
 }

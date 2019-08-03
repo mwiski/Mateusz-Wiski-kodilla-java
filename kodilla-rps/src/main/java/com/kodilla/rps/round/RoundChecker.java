@@ -1,12 +1,11 @@
 package com.kodilla.rps.round;
 
-import com.kodilla.rps.gui.UserInterface;
 import com.kodilla.rps.model.Move;
 import com.kodilla.rps.model.RoundResult;
 
 public class RoundChecker {
 
-    public RoundResult compare(Move playerMove, Move computerMove) {
+    RoundResult compareMoves(Move playerMove, Move computerMove) {
         if (playerMove.equals(computerMove)) {
             return RoundResult.DRAW;
         }
@@ -30,19 +29,15 @@ public class RoundChecker {
                 }
                 return RoundResult.WIN;
             }
+            case RESET: {
+                return RoundResult.RESET;
+            }
+            case EXIT: {
+                return RoundResult.EXIT;
+            }
             default: {
                 throw new IllegalArgumentException("Player move is not correct.");
             }
-        }
-    }
-
-    public RoundResult checkIfResetOrExit(UserInterface gui, String playerMove) {
-        if (playerMove.equals("n")) {
-            return gui.resetGame();
-        } else if (playerMove.equals("x")) {
-            return gui.exitGame();
-        } else {
-            return null;
         }
     }
 }

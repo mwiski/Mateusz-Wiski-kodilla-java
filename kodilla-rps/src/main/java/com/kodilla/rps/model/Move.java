@@ -4,7 +4,9 @@ public enum Move {
 
     ROCK,
     PAPER,
-    SCISSORS;
+    SCISSORS,
+    RESET,
+    EXIT;
 
     public static Move get(int index) {
         if (index < Move.values().length) {

@@ -3,8 +3,6 @@ package com.kodilla.rps.gui;
 import com.kodilla.rps.model.GameDefinition;
 import com.kodilla.rps.model.GameResult;
 import com.kodilla.rps.model.Move;
-import com.kodilla.rps.round.AfterRound;
-import com.kodilla.rps.round.Round;
 import com.kodilla.rps.model.RoundResult;
 import com.kodilla.rps.statistics.Statistics;
 
@@ -14,26 +12,31 @@ public interface UserInterface {
 
     String nameQuestion();
 
-    int roundsQuestion();
+    int roundsToWinGameQuestion();
 
     void showInstruction();
 
-    void showRoundResult(String playerName,
+    void showRoundResult(GameDefinition definition,
                          Move playerMove,
                          Move computerMove,
                          RoundResult result,
-                         int playerRoundResult,
-                         int computerRoundResult);
+                         Statistics statistics);
 
-    String scanPlayerMove();
+    void printRoundNumber(int roundNumber);
 
-    void showWinner(GameDefinition definition, int playerWins, int computerWins);
+    Move getPlayerMove();
 
-    GameResult afterGameInfo(AfterRound afterRound, Round round, Statistics statistics);
+    void showWinner(GameDefinition definition, Statistics statistics);
 
-    RoundResult exitGame();
+    GameResult afterGameInfo(GameDefinition definition, Statistics statistics);
 
-    RoundResult resetGame();
+    boolean confirmExit();
+
+    boolean confirmReset();
+
+    boolean confirmOnceAgain();
 
     void printWrongCharacter();
+
+    void thankYou(String username);
 }
