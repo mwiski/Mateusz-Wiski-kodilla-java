@@ -27,11 +27,6 @@ public class Statistics {
         }
     }
 
-    public void resetRoundScore() {
-        playerRoundsWin = 0;
-        playerRoundsLost = 0;
-    }
-
     public boolean isGameOn(int roundsToWin) {
         if (playerRoundsWin == roundsToWin || playerRoundsLost == roundsToWin) {
             resetRoundNumber();
@@ -40,7 +35,7 @@ public class Statistics {
         return true;
     }
 
-    public void resetRoundNumber() {
+    private void resetRoundNumber() {
         roundNumber = 0;
     }
 
