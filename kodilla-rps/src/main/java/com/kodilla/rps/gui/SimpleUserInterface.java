@@ -15,7 +15,7 @@ public class SimpleUserInterface implements UserInterface {
     private final static List<String> VALID_MOVES = Arrays.asList("1", "2", "3", "x", "n");
 
     public void printIntro() {
-        System.out.println("Welcome to the Rock-Paper-Scissors game.");
+        System.out.println("Welcome to the Rock-Paper-Scissors engine.");
     }
 
     public String nameQuestion() {
@@ -30,7 +30,7 @@ public class SimpleUserInterface implements UserInterface {
     }
 
     public int roundsToWinGameQuestion() {
-        System.out.println("Please, enter number of rounds to win one game:");
+        System.out.println("Please, enter number of rounds to win one engine:");
         int rounds = scanner.nextInt();
         scanner.nextLine();
         return rounds;
@@ -124,7 +124,7 @@ public class SimpleUserInterface implements UserInterface {
     }
 
     public boolean confirmExit() {
-        System.out.println("Are you sure you want to exit game? \n" +
+        System.out.println("Are you sure you want to exit engine? \n" +
                 "Enter \"y\" to yes or \"n\" to no.");
         String answer = scanner.nextLine();
 
@@ -138,7 +138,7 @@ public class SimpleUserInterface implements UserInterface {
     }
 
     public boolean confirmOnceAgain() {
-        System.out.println("You are about to leave the game? Are you sure? \n" +
+        System.out.println("You are about to leave the engine? Are you sure? \n" +
                 "Enter \"y\" to yes or \"n\" to no.");
         String answer = scanner.nextLine();
 
@@ -152,7 +152,7 @@ public class SimpleUserInterface implements UserInterface {
     }
 
     public boolean confirmReset() {
-        System.out.println("Are you sure you want to exit current game and start new one? \n" +
+        System.out.println("Are you sure you want to exit current engine and start new one? \n" +
                 "Enter \"y\" to yes or \"n\" to no.");
         String answer = scanner.nextLine();
 
