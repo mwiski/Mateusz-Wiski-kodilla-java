@@ -8,9 +8,11 @@ import java.util.List;
 public class SudokuRow {
 
     private List<SudokuElement> rowElements;
+    private final int number;
 
-    public SudokuRow() {
+    public SudokuRow(final int number) {
         this.rowElements = new ArrayList<>();
+        this.number = number;
     }
 
     public void addRowElement(SudokuElement sudokuElement) {

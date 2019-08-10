@@ -8,9 +8,11 @@ import java.util.List;
 public class SudokuColumn {
 
     private List<SudokuElement> columnElements;
+    private final int number;
 
-    public SudokuColumn() {
+    public SudokuColumn(final int number) {
         this.columnElements = new ArrayList<>();
+        this.number = number;
     }
 
     public void addColumnElement(SudokuElement sudokuElement) {

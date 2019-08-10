@@ -1,37 +1,94 @@
 package com.kodilla.sudoku.userinterface;
 
 import com.kodilla.sudoku.board.SudokuBoard;
+import com.kodilla.sudoku.board.SudokuColumn;
 import com.kodilla.sudoku.board.SudokuElement;
+import com.kodilla.sudoku.board.SudokuRow;
+
 import java.util.Scanner;
 
 public class SimpleUserInterface implements UserInterface {
 
     private final static Scanner scanner = new Scanner(System.in);
     private final static SudokuElement RESOLVE_SUDOKU = new SudokuElement(-1, -1);
+    private static final int BLOCK_SIZE = 3;
+
+    public void showIntro() {
+        System.out.println("Welcome to Sudoku application.");
+        showInstruction();
+        System.out.println();
+    }
+
+    public void showInstruction() {
+        System.out.println("Enter number of row, column and then value. \n" +
+                "I.e. enter \"1,2,3\" to put value \"3\" to element in 1. row and 2. column.\n" +
+                "If you enter word \"SUDOKU\", program will resolve Sudoku." +
+                "Possible values to enter are: 1-9.");
+    }
 
     public SudokuElement getPlayerMove() {
+        System.out.println("Enter your move: ");
         String playerInput = scanner.nextLine();
         if (!validate(playerInput)) {
             wrongInput();
             getPlayerMove();
-        } else if (playerInput.equals("sudoku")){
-            return RESOLVE_SUDOKU;
         }
-        return new SudokuElement();
+        if (playerInput.equals("SUDOKU")){
+            return RESOLVE_SUDOKU;
+        } else {
+            int row = Integer.parseInt(playerInput.substring(0, 1));
+            int column = Integer.parseInt(playerInput.substring(2, 3));
+            int value = Integer.parseInt(playerInput.substring(4, 5));
+            SudokuElement element = new SudokuElement(row - 1, column - 1);
+            element.setValue(value);
+            return element;
+        }
     }
 
-
     public void showBoard(SudokuBoard board) {
+        System.out.print("  ");
+        for (SudokuColumn column : board.getColumns()) {
+            if (column.getNumber() % BLOCK_SIZE == 1) {
+                System.out.print("   ");
+                System.out.printf("%d  ", column.getNumber());
+            } else {
+                System.out.printf("%d  ", column.getNumber());
+            }
+        }
+        System.out.println();
+        System.out.println("    ---------------------------------");
+        for (SudokuRow row : board.getRows()) {
+            if (row.getNumber() != 1 && row.getNumber() % BLOCK_SIZE == 1) {
+                System.out.println();
+                System.out.printf("%-4d", row.getNumber());
+            } else {
+                System.out.printf("%-4d", row.getNumber());
+            }
+
+            for (int i = 0; i < row.getRowElements().size(); i++) {
+                if (i != 0 && i % BLOCK_SIZE == 0) {
+                    System.out.print("   ");
+                    System.out.printf("|%d|", row.getElement(i).getValue());
+                } else {
+                    System.out.printf("|%d|", row.getElement(i).getValue());
+                }
+            }
+            System.out.println();
+        }
+        System.out.println("    ---------------------------------");
 
     }
 
     public boolean validate(String playerMove) {
-        //Implement method body
-        return false;
+        return (playerMove.matches("\\d" + "," + "\\d" + "," + "\\d") || playerMove.equals("SUDOKU"));
     }
 
     public void wrongInput() {
         System.out.println("You entered wrong input. Please, try again:");
+    }
+
+    public void wrongMove() {
+        System.out.println("Wrong move. This element already has a value or this value is in its row, column or block");
     }
 
     public boolean playAgain() {

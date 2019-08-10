@@ -1,7 +1,7 @@
 package com.kodilla.sudoku.board;
 
 import com.kodilla.sudoku.board.creator.BoardCreator;
-import com.kodilla.sudoku.board.validator.SudokuValidator;
+import com.kodilla.sudoku.validator.SudokuValidator;
 import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +24,7 @@ public class SudokuBoard {
         creator.createBoard(boardSize, blockSize);
     }
 
-    public boolean addPlayerMove(SudokuElement element) {
-        if (validator.validate(element)) {
-            rows.get(element.getX()).getElement(element.getY()).setValue(element.getValue());
-            return true;
-        }
-        return false;
+    public void addPlayerMove(SudokuElement element) {
+        rows.get(element.getX()).getElement(element.getY()).setValue(element.getValue());
     }
 }

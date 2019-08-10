@@ -1,4 +1,4 @@
-package com.kodilla.sudoku.board.validator;
+package com.kodilla.sudoku.validator;
 
 import com.kodilla.sudoku.board.*;
 
@@ -11,7 +11,6 @@ public class SudokuValidator {
     }
 
     public boolean validate(SudokuElement element) {
-
         if (!validateElement(element)) {
             return false;
         } else if (!validateRow(element)) {

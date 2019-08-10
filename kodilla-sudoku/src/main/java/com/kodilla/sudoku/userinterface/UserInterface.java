@@ -5,6 +5,10 @@ import com.kodilla.sudoku.board.SudokuElement;
 
 public interface UserInterface {
 
+    void showIntro();
+
+    void showInstruction();
+
     SudokuElement getPlayerMove();
 
     void showBoard(SudokuBoard board);
@@ -12,6 +16,8 @@ public interface UserInterface {
     boolean validate(String playerMove);
 
     void wrongInput();
+
+    void wrongMove();
 
     boolean playAgain();
 
