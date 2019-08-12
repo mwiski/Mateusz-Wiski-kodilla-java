@@ -11,11 +11,18 @@ public class SudokuChecker {
     }
 
     public boolean check(SudokuElement element) {
+        if (!checkElement(element)) {
+            return false;
+        }
         if (!checkRow(element)) {
             return false;
         } else if (!checkColumn(element)) {
             return false;
         } else return checkBlock(element);
+    }
+
+    private boolean checkElement(SudokuElement element) {
+        return board.getRows().get(element.getX()).getElement(element.getY()).getValue() == SudokuElement.EMPTY;
     }
 
     private boolean checkRow(SudokuElement element) {

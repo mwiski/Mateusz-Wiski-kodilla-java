@@ -24,7 +24,7 @@ public class SudokuBoard {
             for (int i = 0; i < boardSize; i++) {
                 rows.add(new SudokuRow(i + 1));
                 for (int k = 0; k < boardSize; k++) {
-                    rows.get(i).addRowElement(new SudokuElement(k, i));
+                    rows.get(i).addRowElement(new SudokuElement(i, k));
                 }
             }
             defineColumns();
@@ -43,7 +43,7 @@ public class SudokuBoard {
 
         private void defineBlocks(int blockSize) {
             int result = rows.size() / blockSize;
-            for (int i = 0; i < rows.size(); i += blockSize) {
+            for (int i = 0; i < columns.size(); i += blockSize) {
                 for (int k = 0; k < rows.size(); k += blockSize) {
                     SudokuBlock block = new SudokuBlock();
                     blocks.add(block);
