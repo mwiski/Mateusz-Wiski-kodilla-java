@@ -4,8 +4,6 @@ import com.kodilla.sudoku.board.*;
 
 public class SudokuChecker {
 
-    private static final int MIN_VALUE = 1;
-    private static final int MAX_VALUE = 9;
     private SudokuBoard board;
 
     public SudokuChecker(SudokuBoard board) {
@@ -13,17 +11,11 @@ public class SudokuChecker {
     }
 
     public boolean check(SudokuElement element) {
-        if (!checkElement(element)) {
-            return false;
-        } else if (!checkRow(element)) {
+        if (!checkRow(element)) {
             return false;
         } else if (!checkColumn(element)) {
             return false;
         } else return checkBlock(element);
-    }
-
-    private boolean checkElement(SudokuElement element) {
-        return element.getX() > MIN_VALUE && element.getX() < MAX_VALUE && element.getY() > MIN_VALUE && element.getY() < MAX_VALUE;
     }
 
     private boolean checkRow(SudokuElement element) {

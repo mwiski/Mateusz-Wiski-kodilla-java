@@ -78,7 +78,8 @@ public class SimpleUserInterface implements UserInterface {
     }
 
     private boolean validate(String playerMove) {
-        return (playerMove.matches("\\d" + "," + "\\d" + "," + "\\d") || playerMove.equals("SUDOKU"));
+        return (playerMove.matches("\\d" + "," + "\\d" + "," + "\\d") || playerMove.equals("SUDOKU"))
+                && !playerMove.matches("0,0,0");
     }
 
     private void wrongInput() {

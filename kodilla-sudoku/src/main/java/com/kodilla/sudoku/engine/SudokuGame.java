@@ -47,7 +47,7 @@ public class SudokuGame {
                 while (element.getValue() == SudokuElement.EMPTY) {
                     newElement.setValue(random.nextInt(BOARD_SIZE) + 1);
                     if (checker.check(newElement)) {
-                        board.addPlayerMove(newElement);
+                        element.setValue(element.getValue());
                     }
                 }
             }

@@ -24,7 +24,7 @@ public class SudokuBoard {
             for (int i = 0; i < boardSize; i++) {
                 rows.add(new SudokuRow(i + 1));
                 for (int k = 0; k < boardSize; k++) {
-                    rows.get(i).addRowElement(new SudokuElement(k + 1, i + 1));
+                    rows.get(i).addRowElement(new SudokuElement(k, i));
                 }
             }
             defineColumns();
