@@ -1,30 +1,32 @@
-package com.kodilla.sudoku.validator;
+package com.kodilla.sudoku.checker;
 
 import com.kodilla.sudoku.board.*;
 
-public class SudokuValidator {
-    
+public class SudokuChecker {
+
+    private static final int MIN_VALUE = 1;
+    private static final int MAX_VALUE = 9;
     private SudokuBoard board;
 
-    public SudokuValidator(SudokuBoard board) {
+    public SudokuChecker(SudokuBoard board) {
         this.board = board;
     }
 
-    public boolean validate(SudokuElement element) {
-        if (!validateElement(element)) {
+    public boolean check(SudokuElement element) {
+        if (!checkElement(element)) {
             return false;
-        } else if (!validateRow(element)) {
+        } else if (!checkRow(element)) {
             return false;
-        } else if (!validateColumn(element)) {
+        } else if (!checkColumn(element)) {
             return false;
-        } else return validateBlock(element);
+        } else return checkBlock(element);
     }
 
-    private boolean validateElement(SudokuElement element) {
-        return board.getRows().get(element.getX()).getElement(element.getY()).getValue() == SudokuElement.EMPTY;
+    private boolean checkElement(SudokuElement element) {
+        return element.getX() > MIN_VALUE && element.getX() < MAX_VALUE && element.getY() > MIN_VALUE && element.getY() < MAX_VALUE;
     }
 
-    private boolean validateRow(SudokuElement element) {
+    private boolean checkRow(SudokuElement element) {
         SudokuRow row = board.getRows().get(element.getX());
         for (SudokuElement sudokuElement : row.getRowElements()) {
             if (sudokuElement.getValue() == element.getValue()) {
@@ -34,7 +36,7 @@ public class SudokuValidator {
         return true;
     }
 
-    private boolean validateColumn(SudokuElement element) {
+    private boolean checkColumn(SudokuElement element) {
         SudokuColumn column = board.getColumns().get(element.getY());
         for (SudokuElement sudokuElement : column.getColumnElements()) {
             if (sudokuElement.getValue() == element.getValue()) {
@@ -44,7 +46,7 @@ public class SudokuValidator {
         return true;
     }
 
-    private boolean validateBlock(SudokuElement element) {
+    private boolean checkBlock(SudokuElement element) {
         for (SudokuBlock block : board.getBlocks()) {
             for (SudokuElement sudokuElement : block.getBlockElements()) {
                 if (sudokuElement.getValue() == element.getValue()) {

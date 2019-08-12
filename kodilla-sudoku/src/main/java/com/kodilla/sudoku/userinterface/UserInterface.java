@@ -9,13 +9,11 @@ public interface UserInterface {
 
     void showInstruction();
 
-    SudokuElement getPlayerMove();
+    String getPlayerMove();
+
+    SudokuElement getSudokuElement(String playerMove);
 
     void showBoard(SudokuBoard board);
-
-    boolean validate(String playerMove);
-
-    void wrongInput();
 
     void wrongMove();
 
