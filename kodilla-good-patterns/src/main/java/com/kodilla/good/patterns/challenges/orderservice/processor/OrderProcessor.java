@@ -13,8 +13,8 @@ public class OrderProcessor {
     private OrderRepository orderRepository;
 
     public OrderProcessor(final InformationService informationService,
-        final OrderService orderService,
-        final OrderRepository orderRepository) {
+                          final OrderService orderService,
+                          final OrderRepository orderRepository) {
         this.informationService = informationService;
         this.orderService = orderService;
         this.orderRepository = orderRepository;

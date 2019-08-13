@@ -8,7 +8,7 @@ public class ExtraFoodShop implements FoodProducer {
 
     public boolean process(Product product, int orderedQuantity) {
         this.product = product;
-        if(product.getQuantity() >= orderedQuantity)
+        if (product.getQuantity() >= orderedQuantity)
             product.decreaseQuantity(orderedQuantity);
         return true;
     }

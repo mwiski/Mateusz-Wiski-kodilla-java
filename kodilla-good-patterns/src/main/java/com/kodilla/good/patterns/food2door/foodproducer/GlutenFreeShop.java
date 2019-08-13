@@ -14,7 +14,7 @@ public class GlutenFreeShop implements FoodProducer {
     public boolean process(Product product, int orderedQuantity) {
         double requiredFlour = (double) orderedQuantity / 2;
         this.product = product;
-        if(glutenFreeFlourMass >= requiredFlour) {
+        if (glutenFreeFlourMass >= requiredFlour) {
             product.decreaseQuantity(orderedQuantity);
         }
         return true;

@@ -3,6 +3,7 @@ package com.kodilla.good.patterns.food2door.order;
 import com.kodilla.good.patterns.food2door.purchaser.Purchaser;
 import com.kodilla.good.patterns.food2door.foodproducer.FoodProducer;
 import com.kodilla.good.patterns.food2door.product.Product;
+
 import java.util.Objects;
 
 public class Order {

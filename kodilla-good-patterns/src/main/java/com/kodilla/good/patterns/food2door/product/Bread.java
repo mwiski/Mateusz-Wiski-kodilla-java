@@ -2,7 +2,7 @@ package com.kodilla.good.patterns.food2door.product;
 
 import java.util.Objects;
 
-public class Bread implements Product{
+public class Bread implements Product {
 
     private String name;
     private int quantity;
