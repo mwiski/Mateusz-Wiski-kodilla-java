@@ -10,22 +10,22 @@ public class SudokuChecker {
         this.board = board;
     }
 
-    public boolean check(SudokuElement element) {
-        if (!checkElement(element)) {
+    public boolean checkIfMoveCanBeAdded(SudokuElement element) {
+        if (!checkIfElementIsEmpty(element)) {
             return false;
         }
-        if (!checkRow(element)) {
+        if (!checkIfCanBeAddedToRow(element)) {
             return false;
-        } else if (!checkColumn(element)) {
+        } else if (!checkIfCanBeAddedToColumn(element)) {
             return false;
-        } else return checkBlock(element);
+        } else return checkIfCanBeAddedToBlock(element);
     }
 
-    private boolean checkElement(SudokuElement element) {
+    private boolean checkIfElementIsEmpty(SudokuElement element) {
         return board.getRows().get(element.getX()).getElement(element.getY()).getValue() == SudokuElement.EMPTY;
     }
 
-    private boolean checkRow(SudokuElement element) {
+    private boolean checkIfCanBeAddedToRow(SudokuElement element) {
         SudokuRow row = board.getRows().get(element.getX());
         for (SudokuElement sudokuElement : row.getRowElements()) {
             if (sudokuElement.getValue() == element.getValue()) {
@@ -35,7 +35,7 @@ public class SudokuChecker {
         return true;
     }
 
-    private boolean checkColumn(SudokuElement element) {
+    private boolean checkIfCanBeAddedToColumn(SudokuElement element) {
         SudokuColumn column = board.getColumns().get(element.getY());
         for (SudokuElement sudokuElement : column.getColumnElements()) {
             if (sudokuElement.getValue() == element.getValue()) {
@@ -45,10 +45,10 @@ public class SudokuChecker {
         return true;
     }
 
-    private boolean checkBlock(SudokuElement element) {
-        for (SudokuBlock block : board.getBlocks()) {
-            for (SudokuElement sudokuElement : block.getBlockElements()) {
-                if (sudokuElement.getValue() == element.getValue()) {
+    private boolean checkIfCanBeAddedToBlock(SudokuElement element) {
+        for (SudokuRow row : board.getRows()) {
+            for (SudokuElement sudokuElement : row.getRowElements()) {
+                if (sudokuElement.getBlock() == element.getBlock() && sudokuElement.getValue() == element.getValue()) {
                     return false;
                 }
             }

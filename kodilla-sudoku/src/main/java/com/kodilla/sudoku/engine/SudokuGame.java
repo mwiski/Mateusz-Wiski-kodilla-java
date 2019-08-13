@@ -28,7 +28,7 @@ public class SudokuGame {
         String playerMove;
         while (!(playerMove = userInterface.getPlayerMove()).equals("SUDOKU")) {
             SudokuElement element = userInterface.getSudokuElement(playerMove);
-            if (checker.check(element)) {
+            if (checker.checkIfMoveCanBeAdded(element)) {
                 board.addPlayerMove(element);
             } else {
                 userInterface.wrongMove();
@@ -46,9 +46,10 @@ public class SudokuGame {
                 SudokuElement newElement = new SudokuElement(element.getX(), element.getY());
                 while (element.getValue() == SudokuElement.EMPTY) {
                     newElement.setValue(random.nextInt(BOARD_SIZE) + 1);
-                    if (checker.check(newElement)) {
-                        element.setValue(newElement.getValue());
+                    if (checker.checkIfMoveCanBeAdded(newElement)) {
+                        board.addPlayerMove(newElement);
                     }
+                    userInterface.showBoard(board);
                 }
             }
         }

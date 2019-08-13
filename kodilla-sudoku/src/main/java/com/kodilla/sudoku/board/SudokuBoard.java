@@ -9,7 +9,6 @@ public class SudokuBoard {
 
     private List<SudokuRow> rows;
     private List<SudokuColumn> columns;
-    private List<SudokuBlock> blocks;
 
     public void addPlayerMove(SudokuElement element) {
         rows.get(element.getX()).getElement(element.getY()).setValue(element.getValue());
@@ -18,7 +17,6 @@ public class SudokuBoard {
     public static class Builder {
         private List<SudokuRow> rows = new ArrayList<>();
         private List<SudokuColumn> columns = new ArrayList<>();
-        private List<SudokuBlock> blocks = new ArrayList<>();
 
         public Builder board(int boardSize, int blockSize) {
             for (int i = 0; i < boardSize; i++) {
@@ -43,13 +41,13 @@ public class SudokuBoard {
 
         private void defineBlocks(int blockSize) {
             int result = rows.size() / blockSize;
+            int blockNumber = -1;
             for (int i = 0; i < columns.size(); i += blockSize) {
                 for (int k = 0; k < rows.size(); k += blockSize) {
-                    SudokuBlock block = new SudokuBlock();
-                    blocks.add(block);
-                    for (int j = 0; j < result; j++) {
-                        for (int l = 0; l < result; l++) {
-                            block.addBlockElement(rows.get(j).getElement(l));
+                    blockNumber++;
+                    for (int row = i; row < result + i; row++) {
+                        for (int column = k; column < result + k; column++) {
+                            rows.get(row).getElement(column).setBlock(blockNumber);
                         }
                     }
                 }
@@ -57,13 +55,12 @@ public class SudokuBoard {
         }
 
         public SudokuBoard build() {
-            return new SudokuBoard(rows, columns, blocks);
+            return new SudokuBoard(rows, columns);
         }
     }
 
-    private SudokuBoard(List<SudokuRow> rows, List<SudokuColumn> columns, List<SudokuBlock> blocks) {
+    private SudokuBoard(List<SudokuRow> rows, List<SudokuColumn> columns) {
         this.rows = rows;
         this.columns = columns;
-        this.blocks = blocks;
     }
 }
