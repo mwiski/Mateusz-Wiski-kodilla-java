@@ -33,12 +33,11 @@ public class SudokuElement {
         if (!(o instanceof SudokuElement)) return false;
         SudokuElement element = (SudokuElement) o;
         return x == element.x &&
-                y == element.y &&
-                block == element.block;
+                y == element.y;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(x, y, block);
+        return Objects.hash(x, y);
     }
 }

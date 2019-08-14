@@ -49,7 +49,6 @@ public class SudokuGame {
                     if (checker.checkIfMoveCanBeAdded(newElement)) {
                         board.addPlayerMove(newElement);
                     }
-                    userInterface.showBoard(board);
                 }
             }
         }

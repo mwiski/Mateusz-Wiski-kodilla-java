@@ -48,6 +48,13 @@ public class SudokuChecker {
     private boolean checkIfCanBeAddedToBlock(SudokuElement element) {
         for (SudokuRow row : board.getRows()) {
             for (SudokuElement sudokuElement : row.getRowElements()) {
+                if (sudokuElement.equals(element)) {
+                    element.setBlock(sudokuElement.getBlock());
+                }
+            }
+        }
+        for (SudokuRow row : board.getRows()) {
+            for (SudokuElement sudokuElement : row.getRowElements()) {
                 if (sudokuElement.getBlock() == element.getBlock() && sudokuElement.getValue() == element.getValue()) {
                     return false;
                 }
