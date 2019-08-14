@@ -12,6 +12,10 @@ import java.util.Objects;
                 " WHERE SUBSTR(COMPANY_NAME, 1, 3) = :ABC",
         resultClass = Company.class
 )
+@NamedQuery(
+        name = "Company.retrieveCompaniesWithNameHaving",
+        query = "FROM Company WHERE NAME LIKE :%ABC%"
+)
 @Entity
 @Table(name = "COMPANIES")
 public class Company {
