@@ -15,5 +15,8 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
+    compile('org.springframework.boot:spring-boot-starter-aop')
+    testCompile group: 'org.assertj', name: 'assertj-core', version: '3.12.2'
+    
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
