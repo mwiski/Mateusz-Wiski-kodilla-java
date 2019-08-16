@@ -14,7 +14,7 @@ public class PizzaOrderTestSuite {
         BigDecimal totalCost = pizzaOrder.getCost();
 
         //Then
-        assertThat(totalCost).isEqualTo(new BigDecimal(15));
+        assertThat(totalCost).isEqualTo(BigDecimal.valueOf(15.0));
     }
 
     @Test
@@ -39,7 +39,7 @@ public class PizzaOrderTestSuite {
         BigDecimal totalCost = pizzaOrder.getCost();
 
         //Then
-        assertThat(totalCost).isEqualTo(new BigDecimal(18));
+        assertThat(totalCost).isEqualTo(BigDecimal.valueOf(18.0));
     }
 
     @Test
@@ -68,7 +68,7 @@ public class PizzaOrderTestSuite {
         BigDecimal totalCost = pizzaOrder.getCost();
 
         //Then
-        assertThat(totalCost).isEqualTo(new BigDecimal(30));
+        assertThat(totalCost).isEqualTo(BigDecimal.valueOf(30.0));
     }
 
     @Test
@@ -98,7 +98,7 @@ public class PizzaOrderTestSuite {
         BigDecimal totalCost = pizzaOrder.getCost();
 
         //Then
-        assertThat(totalCost).isEqualTo(new BigDecimal(30));
+        assertThat(totalCost).isEqualTo(BigDecimal.valueOf(30.0));
     }
 
     @Test

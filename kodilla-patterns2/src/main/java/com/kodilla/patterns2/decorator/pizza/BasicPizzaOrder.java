@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 public class BasicPizzaOrder implements PizzaOrder {
     @Override
     public BigDecimal getCost() {
-        return new BigDecimal(15.00);
+        return BigDecimal.valueOf(15.00);
     }
 
     @Override

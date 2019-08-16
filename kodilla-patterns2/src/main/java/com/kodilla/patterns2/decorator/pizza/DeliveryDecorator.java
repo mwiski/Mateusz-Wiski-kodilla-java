@@ -9,7 +9,7 @@ public class DeliveryDecorator extends AbstractPizzaOrderDecorator {
 
     @Override
     public BigDecimal getCost() {
-        return super.getCost().add(new BigDecimal(10));
+        return super.getCost().add(BigDecimal.valueOf(10));
     }
 
     @Override
