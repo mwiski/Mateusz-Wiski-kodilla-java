@@ -29,9 +29,7 @@ public class Trainee implements Observable {
 
     @Override
     public void notifyObservers() {
-        for (Observer observer : observers) {
-            observer.update(this);
-        }
+        observers.forEach(o -> o.update(this));
     }
 
     @Override
