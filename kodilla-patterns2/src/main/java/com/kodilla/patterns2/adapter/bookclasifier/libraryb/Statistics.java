@@ -17,12 +17,11 @@ public class Statistics implements BookStatistics {
     @Override
     public int medianPublicationYear(Map<BookSignature, Book> books) {
         if (books.size() == 0) return 0;
-        int[] years = new int[books.size()];
-        int n = 0;
-        for (Map.Entry<BookSignature, Book> entry : books.entrySet()) {
-            years[n] = entry.getValue().getYearOfPublication();
-            n++;
-        }
+        Integer[] years = Arrays.stream(books.values()
+                .stream()
+                .map(Book::getYearOfPublication)
+                .toArray(Integer[]::new))
+                .toArray(Integer[]::new);
         Arrays.sort(years);
         if (years.length % 2 == 0) {
             return years[(int) (years.length / 2 + 0.5)];
