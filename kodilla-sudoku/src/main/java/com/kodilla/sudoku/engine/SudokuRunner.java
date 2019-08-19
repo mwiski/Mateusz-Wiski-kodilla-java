@@ -11,11 +11,11 @@ public class SudokuRunner {
     }
 
     public void run() {
-        boolean gameFinished = false;
-        while(!gameFinished) {
+        boolean shouldGameEnd = false;
+        while(!shouldGameEnd) {
             SudokuGame theGame = new SudokuGame(userInterface);
             if (!theGame.play()) {
-                gameFinished = userInterface.playAgain();
+                shouldGameEnd = userInterface.playAgain();
             }
         }
         userInterface.thankYou();

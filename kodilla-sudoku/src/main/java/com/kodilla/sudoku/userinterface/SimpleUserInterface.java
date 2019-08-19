@@ -94,7 +94,7 @@ public class SimpleUserInterface implements UserInterface {
                 "\nEnter \"y\" to yes or \"n\" to no.");
         String answer = scanner.nextLine();
         if (answer.equals("y")) {
-            return true;
+            return false;
         } else if (answer.equals("n")) {
             return askAgain();
         } else {
@@ -108,9 +108,9 @@ public class SimpleUserInterface implements UserInterface {
                 "\nEnter \"y\" to yes or \"n\" to no.");
         String answer = scanner.nextLine();
         if (answer.equals("y")) {
-            return false;
-        } else if (answer.equals("n")) {
             return true;
+        } else if (answer.equals("n")) {
+            return false;
         } else {
             wrongInput();
             return askAgain();

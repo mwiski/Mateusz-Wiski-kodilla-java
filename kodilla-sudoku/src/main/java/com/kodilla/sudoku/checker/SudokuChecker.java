@@ -1,6 +1,9 @@
 package com.kodilla.sudoku.checker;
 
-import com.kodilla.sudoku.board.*;
+import com.kodilla.sudoku.board.SudokuBoard;
+import com.kodilla.sudoku.board.SudokuColumn;
+import com.kodilla.sudoku.board.SudokuElement;
+import com.kodilla.sudoku.board.SudokuRow;
 
 public class SudokuChecker {
 
@@ -10,22 +13,22 @@ public class SudokuChecker {
         this.board = board;
     }
 
-    public boolean checkIfMoveCanBeAdded(SudokuElement element) {
-        if (!checkIfElementIsEmpty(element)) {
+    public boolean canBeAddedToBoard(SudokuElement element) {
+        if (!isElementEmpty(element)) {
             return false;
         }
-        if (!checkIfCanBeAddedToRow(element)) {
+        if (!canBeAddedToRow(element)) {
             return false;
-        } else if (!checkIfCanBeAddedToColumn(element)) {
+        } else if (!canBeAddedToColumn(element)) {
             return false;
-        } else return checkIfCanBeAddedToBlock(element);
+        } else return canBeAddedToBlock(element);
     }
 
-    private boolean checkIfElementIsEmpty(SudokuElement element) {
+    private boolean isElementEmpty(SudokuElement element) {
         return board.getRows().get(element.getX()).getElement(element.getY()).getValue() == SudokuElement.EMPTY;
     }
 
-    private boolean checkIfCanBeAddedToRow(SudokuElement element) {
+    private boolean canBeAddedToRow(SudokuElement element) {
         SudokuRow row = board.getRows().get(element.getX());
         for (SudokuElement sudokuElement : row.getRowElements()) {
             if (sudokuElement.getValue() == element.getValue()) {
@@ -35,7 +38,7 @@ public class SudokuChecker {
         return true;
     }
 
-    private boolean checkIfCanBeAddedToColumn(SudokuElement element) {
+    private boolean canBeAddedToColumn(SudokuElement element) {
         SudokuColumn column = board.getColumns().get(element.getY());
         for (SudokuElement sudokuElement : column.getColumnElements()) {
             if (sudokuElement.getValue() == element.getValue()) {
@@ -45,7 +48,7 @@ public class SudokuChecker {
         return true;
     }
 
-    private boolean checkIfCanBeAddedToBlock(SudokuElement element) {
+    private boolean canBeAddedToBlock(SudokuElement element) {
         for (SudokuRow row : board.getRows()) {
             for (SudokuElement sudokuElement : row.getRowElements()) {
                 if (sudokuElement.equals(element)) {

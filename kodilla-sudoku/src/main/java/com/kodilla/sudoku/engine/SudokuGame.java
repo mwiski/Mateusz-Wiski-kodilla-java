@@ -5,13 +5,12 @@ import com.kodilla.sudoku.board.SudokuElement;
 import com.kodilla.sudoku.board.SudokuRow;
 import com.kodilla.sudoku.checker.SudokuChecker;
 import com.kodilla.sudoku.userinterface.UserInterface;
-import java.util.Random;
 
 public class SudokuGame {
 
-    private static final int BOARD_SIZE = 9;
     private static final int BLOCK_SIZE = 3;
-    private static final Random random = new Random();
+    private static final int BOARD_SIZE = BLOCK_SIZE * BLOCK_SIZE;
+    private static final int MIN_SIZE = 1;
     private final UserInterface userInterface;
     private SudokuBoard board;
     private SudokuChecker checker;
@@ -26,9 +25,9 @@ public class SudokuGame {
         userInterface.showIntro();
         userInterface.showBoard(board);
         String playerMove;
-        while (!(playerMove = userInterface.getPlayerMove()).equals("SUDOKU")) {
+        while (!shouldResolve(playerMove = userInterface.getPlayerMove())) {
             SudokuElement element = userInterface.getSudokuElement(playerMove);
-            if (checker.checkIfMoveCanBeAdded(element)) {
+            if (checker.canBeAddedToBoard(element)) {
                 board.addPlayerMove(element);
             } else {
                 userInterface.wrongMove();
@@ -40,17 +39,30 @@ public class SudokuGame {
         return false;
     }
 
-    private void resolveSudoku() {
+    private boolean shouldResolve(String playerMove) {
+        return playerMove.equals("SUDOKU");
+    }
+
+    private boolean resolveSudoku() {
         for (SudokuRow row : board.getRows()) {
             for (SudokuElement element : row.getRowElements()) {
-                SudokuElement newElement = new SudokuElement(element.getX(), element.getY());
-                while (element.getValue() == SudokuElement.EMPTY) {
-                    newElement.setValue(random.nextInt(BOARD_SIZE) + 1);
-                    if (checker.checkIfMoveCanBeAdded(newElement)) {
-                        board.addPlayerMove(newElement);
+                if (element.getValue() == SudokuElement.EMPTY) {
+                    SudokuElement newElement = new SudokuElement(element.getX(), element.getY());
+                    for (int n = MIN_SIZE; n <= BOARD_SIZE; n++) {
+                        newElement.setValue(n);
+                        if (checker.canBeAddedToBoard(newElement)) {
+                            board.addPlayerMove(newElement);
+                            if (resolveSudoku()) {
+                                return true;
+                            } else {
+                                element.setValue(SudokuElement.EMPTY);
+                            }
+                        }
                     }
+                    return false;
                 }
             }
         }
+        return true;
     }
 }
