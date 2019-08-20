@@ -64,11 +64,15 @@ public class SimpleUserInterface implements UserInterface {
             }
 
             for (int i = 0; i < row.getRowElements().size(); i++) {
+                String value = Integer.toString(row.getElement(i).getValue());
+                if (value.equals("0")) {
+                    value = ".";
+                }
                 if (i != 0 && i % BLOCK_SIZE == 0) {
                     System.out.print("   ");
-                    System.out.printf("|%d|", row.getElement(i).getValue());
+                    System.out.printf("|%s|", value);
                 } else {
-                    System.out.printf("|%d|", row.getElement(i).getValue());
+                    System.out.printf("|%s|", value);
                 }
             }
             System.out.println();
