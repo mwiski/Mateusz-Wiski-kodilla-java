@@ -34,10 +34,10 @@ BEGIN
             IF (FINISHED = 0) THEN
                 SELECT COUNT(*) FROM RENTS
                     WHERE BOOK_ID = THIS_BOOK_ID
-                        INTO BOOKRENTS;
+                    INTO BOOKRENTS;
                 SELECT DATEDIFF(MAX(RENT_DATE), MIN(RENT_DATE)) + 1 FROM RENTS
                     WHERE BOOK_ID = THIS_BOOK_ID
-                        INTO DAYS;
+                    INTO DAYS;
                 IF DAYS < 30 THEN
                     SET RENTSPERMONTH = BOOKRENTS;
                 ELSE
