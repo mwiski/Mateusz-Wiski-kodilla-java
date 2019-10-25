@@ -1,11 +1,9 @@
 package com.kodilla.jdbc;
 
 import org.junit.Test;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import static org.junit.Assert.assertEquals;
 
 public class StoredProcTestSuite {
@@ -25,6 +23,25 @@ public class StoredProcTestSuite {
         //Then
         String sqlCheckTable = "SELECT COUNT(*) AS HOW_MANY FROM READERS WHERE VIP_LEVEL=\"Not set\"";
         ResultSet rs = statement.executeQuery(sqlCheckTable);
+        int howMany = -1;
+        if (rs.next()) {
+            howMany = rs.getInt("HOW_MANY");
+        }
+        assertEquals(0, howMany);
+    }
+
+    @Test
+    public void testUpdateBestsellers() throws SQLException {
+        //Given
+        DbManager dbManager = DbManager.getInstance();
+        Statement statement = dbManager.getConnection().createStatement();
+        statement.executeUpdate("UPDATE BOOKS SET BESTSELLER=null");
+
+        //When
+        statement.execute("CALL UpdateBestsellers()");
+
+        //Then
+        ResultSet rs = statement.executeQuery("SELECT COUNT(*) AS HOW_MANY FROM BOOKS WHERE BESTSELLER=null");
         int howMany = -1;
         if (rs.next()) {
             howMany = rs.getInt("HOW_MANY");
