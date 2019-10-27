@@ -15,4 +15,5 @@ include 'kodilla-sql'
 include 'kodilla-jdbc'
 include 'kodilla-rps'
 include 'kodilla-sudoku'
+include 'kodilla-testing2'
 
